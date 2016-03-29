@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "39DEB79E74554EFEE628D31D1BE38FAF90D46402",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "39DEB79E74554EFEE628D31D1BE38FAF90D46402" : 0,
+    "35E5F6A486ADBBA0D32382D3C24B1BB7EAABA5B7" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "DD0A7EAB-591C-485E-B0E1-376584581F3F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "39DEB79E74554EFEE628D31D1BE38FAF90D46402" : "mOTivator\/",
+    "35E5F6A486ADBBA0D32382D3C24B1BB7EAABA5B7" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "mOTivator",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "mOTivator\/mOTivator.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mchapm03\/walkSafe.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "35E5F6A486ADBBA0D32382D3C24B1BB7EAABA5B7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:mchapm03\/mOTivator.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "39DEB79E74554EFEE628D31D1BE38FAF90D46402"
+    }
+  ]
+}

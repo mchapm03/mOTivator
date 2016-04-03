@@ -6,4 +6,23 @@
 //  Copyright © 2016 Tufts. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+class Patient {
+
+
+    // MARK: Properties
+    var name: String
+    var tasks = [Task]()
+    
+    
+    init?(name: String){
+        self.name = name
+        
+        if name.isEmpty{
+            return nil
+        }
+    }
+
+
+}

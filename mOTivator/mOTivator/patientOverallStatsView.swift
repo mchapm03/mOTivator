@@ -8,7 +8,7 @@
 
 import UIKit
 
-class patientOverallStats: UIViewController {
+class patientOverallStatsView: UIViewController {
     
     var patient : Patient?
     override func viewDidLoad() {

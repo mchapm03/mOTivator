@@ -10,14 +10,27 @@ import UIKit
 
 class clientTableViewController: UITableViewController {
     
+    var patients = [Patient]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-        
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        // load all patients to table
+        if let loadedPatients = loadPatients() {
+            patients += loadedPatients
+        }else {
+            loadSamplePatients()
+        }
+    }
+    
+    // loadPatients gets all patients stored on the server, and returns them in an array
+    func loadPatients() -> [Patient]?{
+        return []
+    }
+    
+    // loadSamplePatients populates the patients array with fake patients
+    func loadSamplePatients() {
+        patients += [Patient(name: "Ron")!, Patient(name: "Ming")!]
     }
     
     override func didReceiveMemoryWarning() {
@@ -28,13 +41,13 @@ class clientTableViewController: UITableViewController {
     // MARK: - Table view data source
     
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        // return the number of sections
+        return 1
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        // return the number of rows
+        return patients.count
     }
     
     /*
@@ -82,14 +95,19 @@ class clientTableViewController: UITableViewController {
     }
     */
     
-    /*
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-    // Get the new view controller using segue.destinationViewController.
-    // Pass the selected object to the new view controller.
+        // If segue for a patient stats view, set that patient to the selected one
+        if segue.identifier == "showClientDetails" {
+            let patientViewController = segue.destinationViewController as! patientOverallStatsView
+            if let selectedpatient = sender as? Patient {
+                patientViewController.patient = selectedpatient
+            }
+        }
     }
-    */
+
     
 }

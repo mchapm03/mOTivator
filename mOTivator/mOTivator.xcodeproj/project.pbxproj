@@ -15,7 +15,7 @@
 		169287E71CAD5F96000C8232 /* clientTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287E61CAD5F96000C8232 /* clientTableViewController.swift */; };
 		169287EB1CAD6548000C8232 /* Patient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287EA1CAD6548000C8232 /* Patient.swift */; };
 		169287ED1CAD6608000C8232 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287EC1CAD6608000C8232 /* Task.swift */; };
-		169287EF1CAD68CC000C8232 /* patientOverallStats.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287EE1CAD68CC000C8232 /* patientOverallStats.swift */; };
+		169287EF1CAD68CC000C8232 /* patientOverallStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +29,7 @@
 		169287E61CAD5F96000C8232 /* clientTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = clientTableViewController.swift; sourceTree = "<group>"; };
 		169287EA1CAD6548000C8232 /* Patient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Patient.swift; sourceTree = "<group>"; };
 		169287EC1CAD6608000C8232 /* Task.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
-		169287EE1CAD68CC000C8232 /* patientOverallStats.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patientOverallStats.swift; sourceTree = "<group>"; };
+		169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patientOverallStatsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -65,7 +65,7 @@
 				169287D41CAB152F000C8232 /* AppDelegate.swift */,
 				169287D61CAB152F000C8232 /* ViewController.swift */,
 				169287D81CAB152F000C8232 /* Main.storyboard */,
-				169287EE1CAD68CC000C8232 /* patientOverallStats.swift */,
+				169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */,
 				169287EA1CAD6548000C8232 /* Patient.swift */,
 				169287EC1CAD6608000C8232 /* Task.swift */,
 				169287E61CAD5F96000C8232 /* clientTableViewController.swift */,
@@ -152,7 +152,7 @@
 				169287ED1CAD6608000C8232 /* Task.swift in Sources */,
 				169287D51CAB152F000C8232 /* AppDelegate.swift in Sources */,
 				169287E71CAD5F96000C8232 /* clientTableViewController.swift in Sources */,
-				169287EF1CAD68CC000C8232 /* patientOverallStats.swift in Sources */,
+				169287EF1CAD68CC000C8232 /* patientOverallStatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,6 +302,7 @@
 				169287E51CAB152F000C8232 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

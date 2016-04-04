@@ -13,16 +13,16 @@ class Task {
     // Mark: Properties
     var name: String
     // TODO: figure out type of icon
-    var icon: String
+    var icon: UIImage
     // TODO: figure time format
     var timeAssigned = [NSDate]()
     var record = [(NSDate, Bool)]()
     
-    init?(name: String, icon: String){
+    init?(name: String, icon: UIImage){
         self.name = name
         self.icon = icon
         
-        if (name.isEmpty || icon.isEmpty){
+        if (name.isEmpty){
             return nil
         }
     }

@@ -118,14 +118,21 @@ class TaskListTableViewController: UITableViewController {
     }
     
     func saveTasks(){
-        //save tasks here
+        //TODO:save tasks here
     }
-    /*
+    
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "ShowDetail" {
+            let taskDetailViewController = segue.destinationViewController as! NewTaskViewController
+            
+            // Get the cell that generated this segue.
+            if let selectedTask = sender as? UITableViewCell {
+                let thisTask = tasks[tableView.indexPathForCell(selectedTask)!.row]
+                taskDetailViewController.task = thisTask
+            }
+        }
     }
-    */
+    
 
 }

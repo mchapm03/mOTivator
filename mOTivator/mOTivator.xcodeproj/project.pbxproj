@@ -18,6 +18,7 @@
 		169287EF1CAD68CC000C8232 /* patientOverallStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */; };
 		D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */; };
 		D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */; };
+		D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patientOverallStatsView.swift; sourceTree = "<group>"; };
 		D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = overallGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,6 +71,7 @@
 				169287D41CAB152F000C8232 /* AppDelegate.swift */,
 				169287D61CAB152F000C8232 /* ViewController.swift */,
 				169287D81CAB152F000C8232 /* Main.storyboard */,
+				D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */,
 				D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */,
 				D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */,
 				169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */,
@@ -157,6 +160,7 @@
 				169287EB1CAD6548000C8232 /* Patient.swift in Sources */,
 				D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */,
 				169287ED1CAD6608000C8232 /* Task.swift in Sources */,
+				D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */,
 				169287D51CAB152F000C8232 /* AppDelegate.swift in Sources */,
 				169287E71CAD5F96000C8232 /* clientTableViewController.swift in Sources */,
 				D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */,

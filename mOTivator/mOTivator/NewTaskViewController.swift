@@ -11,9 +11,13 @@ import UIKit
 class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
 
     @IBOutlet weak var taskName: UITextField!
-    @IBOutlet weak var taskImage: UIImageView!
-    @IBOutlet var saveButton: UIBarButtonItem!
     @IBOutlet weak var cancelButton: UIBarButtonItem!
+    @IBOutlet weak var taskImage: UIImageView!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    @IBOutlet weak var primaryTime: UITextField!
+    @IBOutlet weak var secondaryTime: UITextField!
+    @IBOutlet weak var startDate: UIDatePicker!
+    @IBOutlet weak var endDate: UIDatePicker!
     
     /*
     This value is either passed by `TaskListTableViewController` in `prepareForSegue(_:sender:)`
@@ -42,6 +46,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     func textFieldDidEndEditing(textField: UITextField) {
         taskName.text = textField.text
+       
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,9 +62,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         let isPresentingInAddMealMode = presentingViewController is UINavigationController
 
         if isPresentingInAddMealMode {
-        dismissViewControllerAnimated(true, completion: nil)
+            dismissViewControllerAnimated(true, completion: nil)
         } else {
-        navigationController!.popViewControllerAnimated(true)
+            navigationController!.popViewControllerAnimated(true)
         }
     }
 
@@ -90,9 +95,12 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         // Dismiss the picker.
         dismissViewControllerAnimated(true, completion: nil)
     }
-    @IBOutlet var selectImageFromLibrary: UITapGestureRecognizer!
+    // Allow user to add pictures from photo library
+
     
-    @IBAction func selectImageFromLib(sender: UITapGestureRecognizer) {
+    // TODO: why isn't this working????
+    @IBAction func selectPhoto(sender: UITapGestureRecognizer) {
+    
         // Hide the keyboard.
         taskName.resignFirstResponder()
         

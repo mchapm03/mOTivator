@@ -14,10 +14,11 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     @IBOutlet weak var cancelButton: UIBarButtonItem!
     @IBOutlet weak var taskImage: UIImageView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
-    @IBOutlet weak var primaryTime: UITextField!
-    @IBOutlet weak var secondaryTime: UITextField!
+    @IBOutlet weak var primaryTime: UIDatePicker!
+    @IBOutlet weak var secondaryTime: UIDatePicker!
     @IBOutlet weak var startDate: UIDatePicker!
     @IBOutlet weak var endDate: UIDatePicker!
+    @IBOutlet weak var caretaker: UITextField!
     
     /*
     This value is either passed by `TaskListTableViewController` in `prepareForSegue(_:sender:)`
@@ -35,6 +36,12 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             navigationItem.title = task.name
             taskName.text   = task.name
             taskImage.image = task.icon
+//            if let p1 = task.primaryTime{
+//                primaryTime = UIDatePicker().setDate(p1, animated: false)
+//            }
+//            if(task.secondaryTime != nil){
+//                secondaryTime = UIDatePicker().setDate(task.secondaryTime!, animated: false)
+//            }
         }
     }
     
@@ -59,9 +66,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
 
     @IBAction func cancel(sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
-        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        let isPresentingInAddTaskMode = presentingViewController is TaskListTableViewController
 
-        if isPresentingInAddMealMode {
+        if isPresentingInAddTaskMode {
             dismissViewControllerAnimated(true, completion: nil)
         } else {
             navigationController!.popViewControllerAnimated(true)
@@ -97,23 +104,23 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
     // Allow user to add pictures from photo library
 
+    @IBAction func selectPhoto(sender: UITapGestureRecognizer) {
+                // Hide the keyboard.
+                taskName.resignFirstResponder()
+        
+                // UIImagePickerController is a view controller that lets a user pick media from their photo library.
+                let imagePickerController = UIImagePickerController()
+        
+                // Only allow photos to be picked, not taken.
+                imagePickerController.sourceType = .PhotoLibrary
+        
+                // Make sure ViewController is notified when the user picks an image.
+                imagePickerController.delegate = self
+        
+                presentViewController(imagePickerController, animated: true, completion: nil)
+    }
     
     // TODO: why isn't this working????
-    @IBAction func selectPhoto(sender: UITapGestureRecognizer) {
-    
-        // Hide the keyboard.
-        taskName.resignFirstResponder()
-        
-        // UIImagePickerController is a view controller that lets a user pick media from their photo library.
-        let imagePickerController = UIImagePickerController()
-        
-        // Only allow photos to be picked, not taken.
-        imagePickerController.sourceType = .PhotoLibrary
-        
-        // Make sure ViewController is notified when the user picks an image.
-        imagePickerController.delegate = self
-        
-        presentViewController(imagePickerController, animated: true, completion: nil)
-    }
+
     
 }

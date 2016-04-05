@@ -17,21 +17,21 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34q-sa-yuM">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="34q-sa-yuM">
                                 <rect key="frame" x="205" y="303" width="160" height="30"/>
                                 <state key="normal" title="Occupational Therapist"/>
                                 <connections>
                                     <segue destination="EWA-e0-RbS" kind="show" id="ILd-i6-tvf"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbL-qy-oZN">
+                            <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wbL-qy-oZN">
                                 <rect key="frame" x="261" y="377" width="48" height="30"/>
                                 <state key="normal" title="Patient"/>
                                 <connections>
                                     <segue destination="Bcc-Gp-Z76" kind="show" id="ydx-du-Jxd"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="I am a..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hb-Y5-Wo8">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="I am a..." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Hb-Y5-Wo8">
                                 <rect key="frame" x="243" y="168" width="60" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -132,26 +132,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SOG-3D-aaL">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="320" id="2NB-O0-o3h"/>
-                                    <constraint firstAttribute="height" constant="314" id="4is-h0-ik7"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="2NB-O0-o3h"/>
-                                        <exclude reference="4is-h0-ik7"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular">
-                                    <mask key="constraints">
-                                        <include reference="2NB-O0-o3h"/>
-                                        <include reference="4is-h0-ik7"/>
-                                    </mask>
-                                </variation>
-                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tasks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tJB-ru-Rvr">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <constraints>
@@ -216,6 +196,64 @@
                                     </mask>
                                 </variation>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="SOG-3D-aaL">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="320" id="2NB-O0-o3h"/>
+                                    <constraint firstAttribute="height" constant="314" id="4is-h0-ik7"/>
+                                </constraints>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ptTask" id="kui-s6-LJr">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="kui-s6-LJr" id="bNa-7o-eFT">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="n8N-n9-whA">
+                                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="0.0" width="42" height="43"/>
+                                                    </variation>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VZX-VK-cSi">
+                                                    <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="100" y="8" width="0.0" height="0.0"/>
+                                                    </variation>
+                                                </label>
+                                            </subviews>
+                                            <variation key="default">
+                                                <mask key="subviews">
+                                                    <exclude reference="n8N-n9-whA"/>
+                                                    <exclude reference="VZX-VK-cSi"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular">
+                                                <mask key="subviews">
+                                                    <include reference="n8N-n9-whA"/>
+                                                    <include reference="VZX-VK-cSi"/>
+                                                </mask>
+                                            </variation>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="2NB-O0-o3h"/>
+                                        <exclude reference="4is-h0-ik7"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="2NB-O0-o3h"/>
+                                        <include reference="4is-h0-ik7"/>
+                                    </mask>
+                                </variation>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -230,44 +268,45 @@
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="SOG-3D-aaL"/>
                                 <exclude reference="tJB-ru-Rvr"/>
                                 <exclude reference="eZv-xm-alH"/>
                                 <exclude reference="d5H-gJ-cn8"/>
+                                <exclude reference="SOG-3D-aaL"/>
                             </mask>
                             <mask key="constraints">
                                 <exclude reference="XVp-4E-pqh"/>
                                 <exclude reference="mSs-rH-1xk"/>
-                                <exclude reference="RMG-Nb-ai1"/>
-                                <exclude reference="xIk-NQ-fHP"/>
                                 <exclude reference="EYB-aE-kxs"/>
                                 <exclude reference="GuA-54-5TA"/>
                                 <exclude reference="XYw-lB-80Q"/>
                                 <exclude reference="ze4-Mx-Nz0"/>
+                                <exclude reference="RMG-Nb-ai1"/>
+                                <exclude reference="xIk-NQ-fHP"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
-                                <include reference="SOG-3D-aaL"/>
                                 <include reference="tJB-ru-Rvr"/>
                                 <include reference="eZv-xm-alH"/>
                                 <include reference="d5H-gJ-cn8"/>
+                                <include reference="SOG-3D-aaL"/>
                             </mask>
                             <mask key="constraints">
                                 <include reference="XVp-4E-pqh"/>
                                 <include reference="mSs-rH-1xk"/>
-                                <include reference="RMG-Nb-ai1"/>
-                                <include reference="xIk-NQ-fHP"/>
                                 <include reference="EYB-aE-kxs"/>
                                 <include reference="GuA-54-5TA"/>
                                 <include reference="XYw-lB-80Q"/>
                                 <include reference="ze4-Mx-Nz0"/>
+                                <include reference="RMG-Nb-ai1"/>
+                                <include reference="xIk-NQ-fHP"/>
                             </mask>
                         </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Title" id="gAa-sc-sg1"/>
                     <connections>
                         <outlet property="overallGraphView" destination="d5H-gJ-cn8" id="dGD-Gl-FuJ"/>
+                        <outlet property="taskTable" destination="SOG-3D-aaL" id="v6X-6r-Lg0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Tas-JA-rbl" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -368,12 +407,18 @@
                                 <rect key="frame" x="5" y="101" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="146" y="68" width="97" height="30"/>
+                                </variation>
                             </textField>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="n4L-bK-s2N">
                                 <rect key="frame" x="5" y="139" width="240" height="240"/>
                                 <gestureRecognizers/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="5" y="110" width="200" height="200"/>
+                                </variation>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="kWK-hg-Ery" appends="YES" id="WIg-VI-NeL"/>
+                                    <outletCollection property="gestureRecognizers" destination="IpE-Pm-vUi" appends="YES" id="Ti9-Ef-GyP"/>
                                 </connections>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Time for Task to be completed:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aNw-Ux-9B1">
@@ -381,59 +426,124 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="5" y="347" width="238" height="21"/>
+                                </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Start Date for Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYy-oN-EbP">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Start Date for Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYy-oN-EbP">
                                 <rect key="frame" x="5" y="387" width="238" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="5" y="516" width="148" height="21"/>
+                                    <rect key="frame" x="5" y="431" width="148" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Secondary Time for Task to be completed (optional):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiY-hZ-IKK">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Secondary Time for Task (optional):" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KiY-hZ-IKK">
                                 <rect key="frame" x="5" y="454" width="401" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="5" y="383" width="272" height="21"/>
+                                </variation>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jYJ-K3-PIG">
-                                <rect key="frame" x="5" y="416" width="97" height="30"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZjM-5j-qsO">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="ZjM-5j-qsO">
                                 <rect key="frame" x="-160" y="-108" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="481470795.91479599">
                                     <!--2016-04-04 13:53:15 +0000-->
                                 </date>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="5" y="540" width="284" height="75"/>
+                                    <rect key="frame" x="161" y="410" width="284" height="75"/>
                                 </variation>
                             </datePicker>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="End Date for Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1U-OF-m8g">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="End Date for Task:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g1U-OF-m8g">
                                 <rect key="frame" x="5" y="387" width="238" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="13" y="623" width="140" height="21"/>
+                                    <rect key="frame" x="13" y="519" width="140" height="21"/>
                                 </variation>
                             </label>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bHS-8H-x8E">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="bHS-8H-x8E">
                                 <rect key="frame" x="-160" y="-108" width="320" height="216"/>
                                 <date key="date" timeIntervalSinceReferenceDate="481470795.91479599">
                                     <!--2016-04-04 13:53:15 +0000-->
                                 </date>
                                 <variation key="heightClass=regular" fixedFrame="YES">
-                                    <rect key="frame" x="5" y="647" width="284" height="75"/>
+                                    <rect key="frame" x="161" y="500" width="284" height="75"/>
                                 </variation>
                             </datePicker>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4bV-8J-dFU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caretaker Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KSm-hO-lth">
+                                <rect key="frame" x="5" y="454" width="401" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="13" y="593" width="129" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cOm-Wh-bGz">
                                 <rect key="frame" x="5" y="478" width="97" height="30"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="161" y="589" width="97" height="30"/>
+                                </variation>
                             </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caretaker Email:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R38-Hr-71b">
+                                <rect key="frame" x="5" y="454" width="401" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="17" y="631" width="125" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Cc4-C2-3aN">
+                                <rect key="frame" x="5" y="478" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="161" y="627" width="97" height="30"/>
+                                </variation>
+                            </textField>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Caretaker Notes:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dz1-eP-qSX">
+                                <rect key="frame" x="5" y="454" width="401" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="13" y="669" width="129" height="21"/>
+                                </variation>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5OO-Ul-Dse">
+                                <rect key="frame" x="5" y="478" width="97" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="161" y="665" width="310" height="30"/>
+                                </variation>
+                            </textField>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-cQ-989">
+                                <rect key="frame" x="-160" y="-108" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="481511490.468355">
+                                    <!--2016-04-05 01:11:30 +0000-->
+                                </date>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="285" y="340" width="260" height="35"/>
+                                </variation>
+                            </datePicker>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="TrI-6z-kbQ">
+                                <rect key="frame" x="-160" y="-108" width="320" height="216"/>
+                                <date key="date" timeIntervalSinceReferenceDate="481511490.468355">
+                                    <!--2016-04-05 01:11:30 +0000-->
+                                </date>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="285" y="376" width="260" height="35"/>
+                                </variation>
+                            </datePicker>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -442,6 +552,14 @@
                                 <exclude reference="ZjM-5j-qsO"/>
                                 <exclude reference="g1U-OF-m8g"/>
                                 <exclude reference="bHS-8H-x8E"/>
+                                <exclude reference="KSm-hO-lth"/>
+                                <exclude reference="cOm-Wh-bGz"/>
+                                <exclude reference="R38-Hr-71b"/>
+                                <exclude reference="Cc4-C2-3aN"/>
+                                <exclude reference="dz1-eP-qSX"/>
+                                <exclude reference="5OO-Ul-Dse"/>
+                                <exclude reference="Fxt-cQ-989"/>
+                                <exclude reference="TrI-6z-kbQ"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular">
@@ -450,6 +568,14 @@
                                 <include reference="ZjM-5j-qsO"/>
                                 <include reference="g1U-OF-m8g"/>
                                 <include reference="bHS-8H-x8E"/>
+                                <include reference="KSm-hO-lth"/>
+                                <include reference="cOm-Wh-bGz"/>
+                                <include reference="R38-Hr-71b"/>
+                                <include reference="Cc4-C2-3aN"/>
+                                <include reference="dz1-eP-qSX"/>
+                                <include reference="5OO-Ul-Dse"/>
+                                <include reference="Fxt-cQ-989"/>
+                                <include reference="TrI-6z-kbQ"/>
                             </mask>
                         </variation>
                     </view>
@@ -467,10 +593,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cancelButton" destination="SGi-aO-N7V" id="SFU-yg-t0r"/>
+                        <outlet property="caretaker" destination="cOm-Wh-bGz" id="p7y-ik-QMw"/>
                         <outlet property="endDate" destination="bHS-8H-x8E" id="G26-rb-pV4"/>
-                        <outlet property="primaryTime" destination="jYJ-K3-PIG" id="yG5-96-3qG"/>
+                        <outlet property="primaryTime" destination="Fxt-cQ-989" id="sFE-dM-koU"/>
                         <outlet property="saveButton" destination="fQv-Ua-OZi" id="S9N-ES-aHg"/>
-                        <outlet property="secondaryTime" destination="4bV-8J-dFU" id="UB7-1M-0hB"/>
+                        <outlet property="secondaryTime" destination="TrI-6z-kbQ" id="E5Q-UT-5kM"/>
                         <outlet property="startDate" destination="ZjM-5j-qsO" id="7X9-j8-ir2"/>
                         <outlet property="taskImage" destination="n4L-bK-s2N" id="qtt-Tr-XUU"/>
                         <outlet property="taskName" destination="5jZ-UL-H79" id="LgJ-OL-0I1"/>
@@ -478,9 +605,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="O9A-wT-4pG" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="Ef5-bu-ZG4" userLabel="Exit" sceneMemberID="exit"/>
-                <tapGestureRecognizer id="kWK-hg-Ery">
+                <tapGestureRecognizer id="IpE-Pm-vUi">
                     <connections>
-                        <action selector="selectPhoto:" destination="aIh-b2-uYU" id="0LM-7h-0sd"/>
+                        <action selector="selectPhoto:" destination="aIh-b2-uYU" id="6po-BY-OBn"/>
                     </connections>
                 </tapGestureRecognizer>
             </objects>
@@ -510,6 +637,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="ydx-du-Jxd"/>
-        <segue reference="dHK-Gu-6W1"/>
+        <segue reference="vjl-mW-vEr"/>
     </inferredMetricsTieBreakers>
 </document>

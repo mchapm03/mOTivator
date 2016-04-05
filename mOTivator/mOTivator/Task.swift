@@ -15,7 +15,10 @@ class Task {
     // TODO: figure out type of icon
     var icon: UIImage
     // TODO: figure time format
+    var primaryTime:NSDate?
+    var secondaryTime:NSDate?
     var timeAssigned = [NSDate]()
+    var caretaker : (String, Int)?
     var record = [(NSDate, Bool)]()
     
     init?(name: String, icon: UIImage){

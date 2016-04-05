@@ -8,13 +8,14 @@
 
 import UIKit
 
-class patientOverallStatsView: UIViewController {
+class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
     var patient : Patient?
-    
+    var tasks = [Task]()
     // For graph:
     // TODO: add labels
     @IBOutlet weak var overallGraphView: OverallGraphView!
+    @IBOutlet weak var taskTable: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,14 +25,43 @@ class patientOverallStatsView: UIViewController {
         
         //for graph:
         //        setupGraphDisplay()
-
-
+        
+        //TODO: get all this user's tasks
+//        if let tasklist = loadTasks(){
+//            tasks += tasklist
+//        }else{
+            loadSampleTasks()
+//        }
+        taskTable.delegate = self
+        taskTable.dataSource = self
     }
+    
+    // load tasks from the server for this patient
+    func loadTasks() -> [Task] {
+        return []
+    }
+    
+    func loadSampleTasks() {
+        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "toothbrush")!)!]
+    }
+    
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tasks.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ptTask", forIndexPath: indexPath)
+        cell.textLabel?.text = tasks[indexPath.row].name
+        cell.imageView?.image = tasks[indexPath.row].icon
+        return cell
+    }
     
     
     // MARK: - Navigation

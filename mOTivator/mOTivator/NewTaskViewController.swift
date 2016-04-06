@@ -120,7 +120,5 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                 presentViewController(imagePickerController, animated: true, completion: nil)
     }
     
-    // TODO: why isn't this working????
-
     
 }

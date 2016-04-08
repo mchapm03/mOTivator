@@ -42,7 +42,7 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
     }
     
     func loadSampleTasks() {
-        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "toothbrush")!)!]
+        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "toothbrush")!, color: UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0)))!, Task(name: "Eat Lunch", icon: UIImage(named: "lunch")!, color: UIColor(red: CGFloat(0.58), green: CGFloat(0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0)))!, Task(name: "Catch the bus", icon: UIImage(named: "schoolbus")!, color: UIColor(red: CGFloat(0.58), green: CGFloat( 0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0)))!, Task(name: "Do homework", icon: UIImage(named: "homework")!, color: UIColor(red: CGFloat(1.0), green: CGFloat( 0.90), blue: CGFloat(0.60), alpha: CGFloat(1.0)))!]
     }
     
     
@@ -59,6 +59,7 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ptTask", forIndexPath: indexPath)
         cell.textLabel?.text = tasks[indexPath.row].name
+        cell.textLabel?.textColor = tasks[indexPath.row].color
         cell.imageView?.image = tasks[indexPath.row].icon
         return cell
     }

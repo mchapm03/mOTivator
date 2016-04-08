@@ -20,6 +20,7 @@ class Task {
     var timeAssigned = [NSDate]()
     var caretaker : (String, Int)?
     var record = [(NSDate, Bool)]()
+    var color: UIColor?
     
     init?(name: String, icon: UIImage){
         self.name = name
@@ -28,5 +29,19 @@ class Task {
         if (name.isEmpty){
             return nil
         }
+    }
+    
+    init?(name: String, icon: UIImage, color: UIColor){
+        self.name = name
+        self.icon = icon
+        self.color = color
+        
+        if (name.isEmpty){
+            return nil
+        }
+    }
+    
+    func setColor(color: UIColor){
+        self.color = color
     }
 }

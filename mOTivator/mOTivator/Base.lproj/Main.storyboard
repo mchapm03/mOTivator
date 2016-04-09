@@ -522,7 +522,7 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-cQ-989">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-cQ-989">
                                 <rect key="frame" x="120" y="229" width="240" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="2OK-aK-gqd"/>
@@ -538,7 +538,7 @@
                                     </mask>
                                 </variation>
                             </datePicker>
-                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="15" translatesAutoresizingMaskIntoConstraints="NO" id="TrI-6z-kbQ">
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="TrI-6z-kbQ">
                                 <rect key="frame" x="120" y="320" width="240" height="63"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="63" id="47B-w2-lG5"/>

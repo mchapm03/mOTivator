@@ -36,12 +36,14 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             navigationItem.title = task.name
             taskName.text   = task.name
             taskImage.image = task.icon
-//            if let p1 = task.primaryTime{
-//                primaryTime = UIDatePicker().setDate(p1, animated: false)
-//            }
-//            if(task.secondaryTime != nil){
-//                secondaryTime = UIDatePicker().setDate(task.secondaryTime!, animated: false)
-//            }
+            if let p1 = task.primaryTime{
+                primaryTime.setDate(p1, animated: false)
+            }
+            if(task.secondaryTime != nil){
+                secondaryTime.setDate(task.secondaryTime!, animated: false)
+            }
+            startDate.setDate(task.startDate, animated: false)
+            endDate.setDate(task.endDate, animated: false)
         }
     }
     
@@ -80,9 +82,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         if saveButton === sender {
             let name = taskName.text ?? ""
             let photo = taskImage.image
-
+            
             // Set the task to be passed to TaskListViewController after the unwind segue.
-            task = Task(name: name, icon: photo!)
+            task = Task(name: name, icon: photo!, primaryTime: primaryTime.date, secondaryTime: nil, startDate: startDate.date, endDate: endDate.date)
         }
     }
 

@@ -11,7 +11,6 @@ import UIKit
     // -----------------------------------------------------------------
     //Weekly sample data
     var graphPoints:[Int] = [4, 6, 8, 9, 10, 10, 12]
-    var graphPointsBad: [Int] = [8, 6, 4, 3, 2, 2, 0]
     // -----------------------------------------------------------------
     
     //1 - the properties for the gradient
@@ -80,8 +79,8 @@ import UIKit
         
         // draw the line graph for Good Points
         
-        UIColor(red: 0.54117647, green: 0.9764705, blue: 0.584313, alpha: 1).setFill()
-        UIColor(red: 0.54117647, green: 0.9764705, blue: 0.584313, alpha: 1).setStroke()
+        UIColor(red: 0.9568, green: 0.90588, blue: 0.96078, alpha: 1).setFill()
+        UIColor(red: 0.9568, green: 0.90588, blue: 0.96078, alpha: 1).setStroke()
         
         //set up the points line
         let graphPath = UIBezierPath()
@@ -113,41 +112,8 @@ import UIKit
                     size: CGSize(width: 5.0, height: 5.0)))
             circle.fill()
         }
+
         
-        // draw the line graph for Bad Points
-        
-        UIColor(red: 0.976470, green: 0.541176, blue: 0.541176, alpha: 1).setFill()
-        UIColor(red: 0.976470, green: 0.541176, blue: 0.541176, alpha: 1).setStroke()
-        
-        //set up the points line
-        let graphPathBad = UIBezierPath()
-        //go to start of line
-        graphPathBad.moveToPoint(CGPoint(x:columnXPoint(0),
-            y:columnYPoint(graphPointsBad[0])))
-        
-        //add points for each item in the graphPoints array
-        //at the correct (x, y) for the point
-        for i in 1..<graphPointsBad.count {
-            let nextPoint = CGPoint(x:columnXPoint(i),
-                y:columnYPoint(graphPointsBad[i]))
-            graphPathBad.addLineToPoint(nextPoint)
-        }
-        
-        //draw the line on top of the clipped gradient
-        graphPathBad.lineWidth = 2.0
-        graphPathBad.stroke()
-        
-        //Draw the circles on top of graph stroke
-        for i in 0..<graphPointsBad.count {
-            var point = CGPoint(x:columnXPoint(i), y:columnYPoint(graphPointsBad[i]))
-            point.x -= 5.0/2
-            point.y -= 5.0/2
-            
-            let circle = UIBezierPath(ovalInRect:
-                CGRect(origin: point,
-                    size: CGSize(width: 5.0, height: 5.0)))
-            circle.fill()
-        }
         
         UIColor.whiteColor().setFill()
         UIColor.whiteColor().setStroke()

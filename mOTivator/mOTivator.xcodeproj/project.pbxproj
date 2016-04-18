@@ -18,6 +18,7 @@
 		169287EF1CAD68CC000C8232 /* patientOverallStatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */; };
 		D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */; };
 		D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */; };
+		D6D91C6A1CC4606A00E0C436 /* startActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */; };
 		D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		169287EE1CAD68CC000C8232 /* patientOverallStatsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = patientOverallStatsView.swift; sourceTree = "<group>"; };
 		D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = startActivityViewController.swift; sourceTree = "<group>"; };
 		D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = overallGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,6 +81,7 @@
 				169287EC1CAD6608000C8232 /* Task.swift */,
 				169287E61CAD5F96000C8232 /* clientTableViewController.swift */,
 				169287DB1CAB152F000C8232 /* Assets.xcassets */,
+				D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */,
 				169287DD1CAB152F000C8232 /* LaunchScreen.storyboard */,
 				169287E01CAB152F000C8232 /* Info.plist */,
 			);
@@ -156,6 +159,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D6D91C6A1CC4606A00E0C436 /* startActivityViewController.swift in Sources */,
 				169287D71CAB152F000C8232 /* ViewController.swift in Sources */,
 				169287EB1CAD6548000C8232 /* Patient.swift in Sources */,
 				D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */,

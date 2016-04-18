@@ -10,7 +10,17 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var otButton: UIButton!
+    @IBOutlet weak var studentButton: UIButton!
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        otButton.setBackgroundImage(UIImage(named: "Gru-OT")!, forState: UIControlState.Normal)
+        studentButton.setBackgroundImage(UIImage(named: "student-minion")!, forState: UIControlState.Normal)
+    }
+    
     override func viewDidLoad() {
+       
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
     }

@@ -88,6 +88,8 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 // TODO: add new task to server
                 let newIndexPath = NSIndexPath(forRow: tasks.count, inSection: 0)
                 tasks.append(task)
+                print("in tasks")
+                print(tasks)
                 taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)                
             }
             // Save the tasks.

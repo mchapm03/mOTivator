@@ -20,7 +20,8 @@ class Task {
     var timeAssigned = [NSDate]()
     var startDate: NSDate
     var endDate: NSDate
-    var caretaker : (String, Int)?
+    var caretaker : (String, String)?
+    var caretakerNotes : String?
     var record = [(NSDate, Bool)]()
     var color: UIColor?
     

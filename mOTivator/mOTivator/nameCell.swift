@@ -9,10 +9,9 @@
 import UIKit
 
 class nameCell: UITableViewCell {
-    @IBOutlet weak var cellLabel: UILabel!
     
+    @IBOutlet weak var nameInput: UITextField!
     override func awakeFromNib() {
-        @IBOutlet weak var nameLabel: UITextField!
         super.awakeFromNib()
     }
     

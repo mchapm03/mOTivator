@@ -10,8 +10,11 @@ import UIKit
 
 class datepickerCellView: UITableViewCell {
 //    var isEditing = false
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var cellDate: UIDatePicker!
+    
+    @IBOutlet weak var typeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var date: UIDatePicker!
+    
     class var bigHeight: CGFloat { get { return 200 } }
     class var smallHeight: CGFloat  { get { return 44  } }
 

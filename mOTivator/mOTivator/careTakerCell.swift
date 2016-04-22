@@ -9,8 +9,10 @@
 import UIKit
 
 class careTakerCell: UITableViewCell {
-    @IBOutlet weak var cellLabel: UILabel!
-    @IBOutlet weak var cellNotes: UITextField!
+
+    @IBOutlet weak var caretakerName: UITextField!
+    @IBOutlet weak var careTakerEmail: UITextField!
+    @IBOutlet weak var careTakerNotes: UITextView!
     
     override func awakeFromNib() {
         super.awakeFromNib()

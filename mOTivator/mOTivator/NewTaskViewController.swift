@@ -27,7 +27,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        newTaskTable.dataSource = self
+        newTaskTable.delegate = self
+        self.view.addSubview(self.newTaskTable)
 //        taskName.delegate = self
         // Set up views if editing an existing Task.
 //        if let task = task {
@@ -75,9 +77,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             return 1
         }
     }
-    func tableView(tableView: UITableView!, titleForHeaderInSection section: Int) -> String!{
-        return "section header here"
-    }
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 && indexPath.row == 0 {
             let cell = newTaskTable.dequeueReusableCellWithIdentifier("nameCell", forIndexPath: indexPath) as! nameCell
@@ -88,7 +88,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         }else if indexPath.section == 1 {
             let cell = newTaskTable.dequeueReusableCellWithIdentifier("dateCell", forIndexPath: indexPath) as! datepickerCellView
             let dateformatter = NSDateFormatter()
-            if indexPath.row == 1 {
+            if indexPath.row == 0 {
                 cell.typeLabel.text = "Completion Time"
                 dateformatter.dateFormat = "HH:mm zzz"
                 if let task = task {
@@ -96,7 +96,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                 }else {
                     cell.dateLabel.text = dateformatter.stringFromDate(NSDate())
                 }
-            }else if indexPath.row == 2{
+            }else if indexPath.row == 1 {
                 cell.typeLabel.text = "Start Date"
                 cell.date.datePickerMode = UIDatePickerMode.Date
                 dateformatter.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -105,7 +105,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                 }else {
                     cell.dateLabel.text = dateformatter.stringFromDate(NSDate())
                 }
-            }else if indexPath.row == 3{
+            }else if indexPath.row == 2 {
                 cell.typeLabel.text = "End Date"
                 cell.date.datePickerMode = UIDatePickerMode.Date
                 dateformatter.dateStyle = NSDateFormatterStyle.MediumStyle
@@ -137,35 +137,35 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         return newTaskTable.dequeueReusableCellWithIdentifier("nameCell", forIndexPath: indexPath)
     }
     //to make some expandable:
-//
-//    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-//        if indexPath.section == 2 {
-//            var _ = tableView.cellForRowAtIndexPath(indexPath) as! datepickerCellView
-//            switch selectedIndexPath {
-//            case nil:
-//                selectedIndexPath = indexPath
-//            default:
-//                if selectedIndexPath! == indexPath {
-//                    selectedIndexPath = nil
-//                } else {
-//                    selectedIndexPath = indexPath
-//                }
-//            }
-//            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
-//        }
-//    }
-//    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//
-//        if selectedIndexPath != nil {
-//            if indexPath == selectedIndexPath! {
-//                return 240.0
-//            } else {
-//                return 44.0
-//            }
-//        } else {
-//            return 44.0
-//        }
-//    }
+
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 1 {
+            var _ = tableView.cellForRowAtIndexPath(indexPath) as! datepickerCellView
+            switch selectedIndexPath {
+            case nil:
+                selectedIndexPath = indexPath
+            default:
+                if selectedIndexPath! == indexPath {
+                    selectedIndexPath = nil
+                } else {
+                    selectedIndexPath = indexPath
+                }
+            }
+            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+        }
+    }
+    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+        if selectedIndexPath != nil {
+            if indexPath == selectedIndexPath! {
+                return 240.0
+            } else {
+                return 44.0
+            }
+        } else {
+            return 44.0
+        }
+    }
 
     // MARK: Navigation
 

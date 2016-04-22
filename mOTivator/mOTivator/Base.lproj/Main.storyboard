@@ -418,26 +418,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="n4L-bK-s2N">
-                                <rect key="frame" x="5" y="110" width="100" height="100"/>
-                                <gestureRecognizers/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="n4L-bK-s2N" secondAttribute="height" multiplier="1:1" id="BeY-ZH-rfD"/>
-                                    <constraint firstAttribute="width" secondItem="n4L-bK-s2N" secondAttribute="height" multiplier="1:1" id="ZeJ-Pt-qhn"/>
-                                    <constraint firstAttribute="width" constant="100" id="szj-GI-Pms"/>
-                                </constraints>
-                                <variation key="default">
-                                    <mask key="constraints">
-                                        <exclude reference="ZeJ-Pt-qhn"/>
-                                    </mask>
-                                </variation>
-                                <variation key="heightClass=regular" ambiguous="YES" misplaced="YES">
-                                    <rect key="frame" x="5" y="108" width="125" height="125"/>
-                                </variation>
-                                <connections>
-                                    <outletCollection property="gestureRecognizers" destination="IpE-Pm-vUi" appends="YES" id="Ti9-Ef-GyP"/>
-                                </connections>
-                            </imageView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kkl-sB-xrH">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -445,6 +425,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="nameCell" rowHeight="44" id="vvr-BD-KDX" customClass="nameCell" customModule="mOTivator" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vvr-BD-KDX" id="aSQ-zU-r20">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMb-vY-VED">
@@ -452,7 +433,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="5" width="600" height="30"/>
+                                                        <rect key="frame" x="8" y="5" width="584" height="30"/>
                                                     </variation>
                                                 </textField>
                                             </subviews>
@@ -474,6 +455,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="dateCell" rowHeight="240" id="e4f-NU-U0R" customClass="datepickerCellView" customModule="mOTivator" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="e4f-NU-U0R" id="Sq8-jd-Jxn">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-cQ-989">
@@ -492,7 +474,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="42" height="21"/>
+                                                        <rect key="frame" x="8" y="8" width="246" height="21"/>
                                                     </variation>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKE-6f-BWe">
@@ -501,7 +483,7 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="401" y="0.0" width="199" height="21"/>
+                                                        <rect key="frame" x="254" y="8" width="346" height="21"/>
                                                     </variation>
                                                 </label>
                                             </subviews>
@@ -526,9 +508,10 @@
                                             <outlet property="typeLabel" destination="kl2-jR-PK7" id="T3r-DE-o4Z"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="careTakerCell" rowHeight="189" id="cj9-gl-aNg" customClass="careTakerCell" customModule="mOTivator" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="careTakerCell" rowHeight="240" id="cj9-gl-aNg" customClass="careTakerCell" customModule="mOTivator" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cj9-gl-aNg" id="cPm-Sg-EIY">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="188"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPh-fS-BfV">
@@ -536,7 +519,15 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="0.0" width="600" height="30"/>
+                                                        <rect key="frame" x="8" y="0.0" width="584" height="30"/>
+                                                    </variation>
+                                                </textField>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NkS-gF-3Ao">
+                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <textInputTraits key="textInputTraits"/>
+                                                    <variation key="heightClass=regular" fixedFrame="YES">
+                                                        <rect key="frame" x="8" y="29" width="584" height="30"/>
                                                     </variation>
                                                 </textField>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5FR-Ts-W4r">
@@ -548,27 +539,19 @@
                                                         <rect key="frame" x="0.0" y="58" width="600" height="122"/>
                                                     </variation>
                                                 </textView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NkS-gF-3Ao">
-                                                    <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
-                                                    <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="29" width="600" height="30"/>
-                                                    </variation>
-                                                </textField>
                                             </subviews>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="aPh-fS-BfV"/>
-                                                    <exclude reference="5FR-Ts-W4r"/>
                                                     <exclude reference="NkS-gF-3Ao"/>
+                                                    <exclude reference="5FR-Ts-W4r"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular">
                                                 <mask key="subviews">
                                                     <include reference="aPh-fS-BfV"/>
-                                                    <include reference="5FR-Ts-W4r"/>
                                                     <include reference="NkS-gF-3Ao"/>
+                                                    <include reference="5FR-Ts-W4r"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -583,19 +566,48 @@
                                     <rect key="frame" x="0.0" y="241" width="600" height="507"/>
                                 </variation>
                             </tableView>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="defaultPhoto" translatesAutoresizingMaskIntoConstraints="NO" id="n4L-bK-s2N">
+                                <rect key="frame" x="5" y="110" width="100" height="100"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="n4L-bK-s2N" secondAttribute="height" multiplier="1:1" id="BeY-ZH-rfD"/>
+                                    <constraint firstAttribute="width" secondItem="n4L-bK-s2N" secondAttribute="height" multiplier="1:1" id="ZeJ-Pt-qhn"/>
+                                    <constraint firstAttribute="width" constant="100" id="szj-GI-Pms"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="ZeJ-Pt-qhn"/>
+                                    </mask>
+                                </variation>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="IpE-Pm-vUi" appends="YES" id="Ti9-Ef-GyP"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="n4L-bK-s2N" firstAttribute="leading" secondItem="Rbv-G5-elj" secondAttribute="leadingMargin" constant="-15" id="nHM-dX-gXM"/>
+                            <constraint firstItem="n4L-bK-s2N" firstAttribute="centerX" secondItem="Rbv-G5-elj" secondAttribute="centerX" id="0YO-Qg-YSN"/>
+                            <constraint firstItem="n4L-bK-s2N" firstAttribute="centerX" secondItem="Rbv-G5-elj" secondAttribute="centerX" id="1yg-lp-8Xg"/>
+                            <constraint firstItem="n4L-bK-s2N" firstAttribute="top" secondItem="cjY-2y-yEU" secondAttribute="bottom" constant="69" id="CQe-4L-LKz"/>
                         </constraints>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="kkl-sB-xrH"/>
                             </mask>
+                            <mask key="constraints">
+                                <exclude reference="0YO-Qg-YSN"/>
+                                <exclude reference="1yg-lp-8Xg"/>
+                                <exclude reference="CQe-4L-LKz"/>
+                            </mask>
                         </variation>
                         <variation key="heightClass=regular">
                             <mask key="subviews">
                                 <include reference="kkl-sB-xrH"/>
+                            </mask>
+                            <mask key="constraints">
+                                <include reference="0YO-Qg-YSN"/>
+                                <include reference="1yg-lp-8Xg"/>
+                                <include reference="CQe-4L-LKz"/>
                             </mask>
                         </variation>
                     </view>

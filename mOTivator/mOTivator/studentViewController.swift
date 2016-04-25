@@ -82,6 +82,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 // TODO: upload in server
                 tasks[selectedIndexPath.row] = task
                 taskTable.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+               // task.setNotifications()
 
             } else {
                 // Add a new task.

@@ -24,6 +24,7 @@ class Task {
     var caretakerNotes : String?
     var record = [(NSDate, Bool)]()
     var color: UIColor?
+    var notification = UILocalNotification()
     
     init?(name: String, icon: UIImage, primaryTime: NSDate, secondaryTime: NSDate?, startDate: NSDate, endDate: NSDate){
         self.name = name
@@ -59,19 +60,16 @@ class Task {
         setNotifications()
     }
 
+    // Set the notification to the time that the user specifies
     func setNotifications(){
         //if user hasn't granted permissions:
         guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
         
         if settings.types == .None {
-//            let ac = UIAlertController(title: "Can't schedule", message: "Either we don't have permission to schedule notifications, or we haven't asked yet.", preferredStyle: .Alert)
-//            ac.addAction(UIAlertAction(title: "OK", style: .Default, handler: nil))
-            //self.presentViewController(ac, animated: true)
             return
         }
-        let notification = UILocalNotification()
-        notification.fireDate = NSDate(timeIntervalSinceNow: 5)
-        notification.alertBody = "Do your task! " + name
+        self.notification.fireDate = self.primaryTime!
+        self.notification.alertBody = "Do your task! " + name
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     

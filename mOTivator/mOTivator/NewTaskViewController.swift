@@ -97,8 +97,9 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     cell.dateLabel.text = dateformatter.stringFromDate(taskeDate)
                     cell.date.date = taskeDate
                 }else {
-                    cell.dateLabel.text = dateformatter.stringFromDate(NSDate())
-                    cell.date.date = NSDate()
+                    let endDate = NSDate(timeIntervalSinceNow: 604800)
+                    cell.dateLabel.text = dateformatter.stringFromDate(endDate)
+                    cell.date.date = endDate
                 }
             }
             return cell

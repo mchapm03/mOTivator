@@ -44,14 +44,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-//    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
+    func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
 //        // Override point for customization after application launch.
-//        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//        let viewController: startActivityViewController = storyboard.instantiateViewControllerWithIdentifier("startAct") as! startActivityViewController
-//        
-//        window?.rootViewController = viewController
-//        window?.makeKeyAndVisible()
-//    }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController: startActivityViewController = storyboard.instantiateViewControllerWithIdentifier("startAct") as! startActivityViewController
+        
+        
+        let alert = UIAlertController(title: "Alert", message: "Time to complete task." + notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Start Task", style: UIAlertActionStyle.Default, handler: {
+            (action: UIAlertAction!) in self.window?.rootViewController = viewController}))
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
+        self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
+    }
 
 
 }

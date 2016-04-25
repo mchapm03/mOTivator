@@ -24,7 +24,7 @@ class Task {
     var record = [(NSDate, Bool)]()
     var color: UIColor?
     
-    init?(name: String, icon: UIImage, primaryTime: NSDate, secondaryTime: NSDate?, startDate: NSDate, endDate: NSDate){
+    init?(name: String, icon: UIImage, primaryTime: NSDate, secondaryTime: NSDate?, startDate: NSDate, endDate: NSDate) {
         self.name = name
         self.icon = icon
         self.startDate = startDate
@@ -35,10 +35,6 @@ class Task {
             self.secondaryTime = secondaryTime
         }
         setNotifications()
-        
-        if (name.isEmpty){
-            return nil
-        }
     }
     
     init?(name: String, icon: UIImage, color: UIColor, primaryTime: NSDate, secondaryTime: NSDate?, startDate: NSDate, endDate: NSDate){
@@ -48,10 +44,7 @@ class Task {
         self.startDate = startDate
         self.endDate = endDate
         self.primaryTime = primaryTime
-        
-        if (name.isEmpty){
-            return nil
-        }
+
         if secondaryTime != nil {
             self.secondaryTime = secondaryTime
         }

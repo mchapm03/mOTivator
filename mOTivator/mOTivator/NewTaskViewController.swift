@@ -30,33 +30,13 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         newTaskTable.dataSource = self
         newTaskTable.delegate = self
         self.view.addSubview(self.newTaskTable)
-//        taskName.delegate = self
+
         // Set up views if editing an existing Task.
-//        if let task = task {
-//            navigationItem.title = task.name
-//            taskName.text   = task.name
-//            taskImage.image = task.icon
-//            if let p1 = task.primaryTime{
-//                primaryTime.setDate(p1, animated: false)
-//            }
-//            if(task.secondaryTime != nil){
-//                secondaryTime.setDate(task.secondaryTime!, animated: false)
-//            }
-//            startDate.setDate(task.startDate, animated: false)
-//            endDate.setDate(task.endDate, animated: false)
-//        }
+        if let task = task {
+            navigationItem.title = task.name
+            taskImage.image = task.icon
+        }
     }
-    
-//    func textFieldShouldReturn(textField: UITextField) -> Bool {
-//        // Hide the keyboard.
-//        textField.resignFirstResponder()
-//        return true
-//    }
-    
-//    func textFieldDidEndEditing(textField: UITextField) {
-//        taskName.text = textField.text
-//       
-//    }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -79,7 +59,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     }
 
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        if indexPath.section == 0 && indexPath.row == 0 {
+        if indexPath.section == 0{
             let cell = newTaskTable.dequeueReusableCellWithIdentifier("nameCell", forIndexPath: indexPath) as! nameCell
             if let task = task {
                 cell.nameInput.text = task.name
@@ -91,31 +71,37 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             if indexPath.row == 0 {
                 cell.typeLabel.text = "Completion Time"
                 dateformatter.dateFormat = "HH:mm zzz"
-                if let task = task {
-                    cell.dateLabel.text = dateformatter.stringFromDate(task.primaryTime!)
+                if let taskPTime = task?.primaryTime {
+                    cell.dateLabel.text = dateformatter.stringFromDate(taskPTime)
+                    cell.date.date = taskPTime
                 }else {
                     cell.dateLabel.text = dateformatter.stringFromDate(NSDate())
+                    cell.date.date = NSDate()
                 }
             }else if indexPath.row == 1 {
                 cell.typeLabel.text = "Start Date"
                 cell.date.datePickerMode = UIDatePickerMode.Date
                 dateformatter.dateStyle = NSDateFormatterStyle.MediumStyle
-                if let task = task {
-                    cell.dateLabel.text = dateformatter.stringFromDate(task.startDate)
+                if let tasksDate = task?.startDate {
+                    cell.dateLabel.text = dateformatter.stringFromDate(tasksDate)
+                    cell.date.date = tasksDate
                 }else {
                     cell.dateLabel.text = dateformatter.stringFromDate(NSDate())
+                    cell.date.date = NSDate()
                 }
             }else if indexPath.row == 2 {
                 cell.typeLabel.text = "End Date"
                 cell.date.datePickerMode = UIDatePickerMode.Date
                 dateformatter.dateStyle = NSDateFormatterStyle.MediumStyle
-                if let task = task {
-                    cell.dateLabel.text = dateformatter.stringFromDate(task.endDate)
+                if let taskeDate = task?.endDate {
+                    cell.dateLabel.text = dateformatter.stringFromDate(taskeDate)
+                    cell.date.date = taskeDate
                 }else {
                     cell.dateLabel.text = dateformatter.stringFromDate(NSDate())
+                    cell.date.date = NSDate()
                 }
-                return cell
             }
+            return cell
         }else {
             let cell = newTaskTable.dequeueReusableCellWithIdentifier("careTakerCell", forIndexPath: indexPath) as! careTakerCell
             if let task = task {
@@ -125,22 +111,22 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     cell.careTakerNotes.textColor = UIColor.lightGrayColor()
                     cell.careTakerNotes.text = "Caretaker Notes."
                 }
-                let (cname, cemail) = task.caretaker!
-                cell.caretakerName.text = cname
-                cell.careTakerEmail.text = cemail
+                if let (cname, cemail) = task.caretaker {
+                    cell.caretakerName.text = cname
+                    cell.careTakerEmail.text = cemail
+                }
             }else {
                 cell.careTakerNotes.textColor = UIColor.lightGrayColor()
                 cell.careTakerNotes.text = "Caretaker Notes."
             }
             return cell
         }
-        return newTaskTable.dequeueReusableCellWithIdentifier("nameCell", forIndexPath: indexPath)
     }
+    
     //to make some expandable:
 
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
-            var _ = tableView.cellForRowAtIndexPath(indexPath) as! datepickerCellView
             switch selectedIndexPath {
             case nil:
                 selectedIndexPath = indexPath
@@ -151,19 +137,26 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     selectedIndexPath = indexPath
                 }
             }
-            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+//            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
+            tableView.reloadData()
         }
     }
+    
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-
-        if selectedIndexPath != nil {
-            if indexPath == selectedIndexPath! {
-                return 240.0
+        if indexPath.section == 0 {
+            return 44.0
+        }else if indexPath.section == 1{
+            if selectedIndexPath != nil {
+                if indexPath == selectedIndexPath! {
+                    return 240.0
+                } else {
+                    return 44.0
+                }
             } else {
                 return 44.0
             }
-        } else {
-            return 44.0
+        }else {
+            return 240.0
         }
     }
 
@@ -183,8 +176,19 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     // This method lets you configure a view controller before it's presented.
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if saveButton === sender {
-//            let name = taskName.text ?? ""
-//            let photo = taskImage.image
+            let namecell = newTaskTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 0)) as! nameCell
+            let name = namecell.nameInput.text
+            
+            let pTimeCell = newTaskTable.cellForRowAtIndexPath(NSIndexPath(forRow: 0, inSection: 1)) as! datepickerCellView
+            let pTime = pTimeCell.date.date
+            
+            let sDateCell = newTaskTable.cellForRowAtIndexPath(NSIndexPath(forRow: 1, inSection: 1)) as! datepickerCellView
+            let sDate = sDateCell.date.date
+            
+            let eDateCell = newTaskTable.cellForRowAtIndexPath(NSIndexPath(forRow: 2, inSection: 1)) as! datepickerCellView
+            let eDate = eDateCell.date.date
+            
+            let photo = taskImage.image
       
             //if user hasn't granted permissions:
 //            if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
@@ -197,7 +201,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
 //            }
             
             // Set the task to be passed to TaskListViewController after the unwind segue.
-//            task = Task(name: name, icon: photo!, primaryTime: primaryTime.date, secondaryTime: nil, startDate: startDate.date, endDate: endDate.date)
+            task = Task(name: name!, icon: photo!, primaryTime: pTime, secondaryTime: NSDate(), startDate: sDate, endDate: eDate)
         }
     }
 

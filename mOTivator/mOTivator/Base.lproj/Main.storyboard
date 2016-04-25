@@ -511,7 +511,7 @@
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="careTakerCell" rowHeight="240" id="cj9-gl-aNg" customClass="careTakerCell" customModule="mOTivator" customModuleProvider="target">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="cj9-gl-aNg" id="cPm-Sg-EIY">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="188"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="239"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPh-fS-BfV">
@@ -519,7 +519,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="8" y="0.0" width="584" height="30"/>
+                                                        <rect key="frame" x="8" y="8" width="584" height="30"/>
                                                     </variation>
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NkS-gF-3Ao">
@@ -527,7 +527,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="8" y="29" width="584" height="30"/>
+                                                        <rect key="frame" x="8" y="46" width="584" height="30"/>
                                                     </variation>
                                                 </textField>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5FR-Ts-W4r">
@@ -536,7 +536,7 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
-                                                        <rect key="frame" x="0.0" y="58" width="600" height="122"/>
+                                                        <rect key="frame" x="8" y="84" width="584" height="122"/>
                                                     </variation>
                                                 </textView>
                                             </subviews>
@@ -945,6 +945,6 @@
         <image name="motivator_iconcopy" width="300" height="300"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="Gil-WG-5sD"/>
+        <segue reference="46l-LR-DPO"/>
     </inferredMetricsTieBreakers>
 </document>

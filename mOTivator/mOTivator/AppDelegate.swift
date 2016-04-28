@@ -45,7 +45,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-//        // Override point for customization after application launch.
+        // When local notification received, alert user, take them to the startActivity view
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController: startActivityViewController = storyboard.instantiateViewControllerWithIdentifier("startAct") as! startActivityViewController
         

@@ -18,6 +18,12 @@ class startActivityViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        detectMovement()
+        
+    }
+    
+    func detectMovement() {
+        performSegueWithIdentifier("goodJobSegue", sender: self)
     }
     
 }

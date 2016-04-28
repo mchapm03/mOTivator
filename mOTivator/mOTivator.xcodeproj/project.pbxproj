@@ -22,6 +22,7 @@
 		D60758261CC6A7C500D08AF0 /* studentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60758251CC6A7C500D08AF0 /* studentViewController.swift */; };
 		D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */; };
 		D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */; };
+		D69D74811CD247B8007BB9AF /* goodJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69D74801CD247B8007BB9AF /* goodJobViewController.swift */; };
 		D6D91C6A1CC4606A00E0C436 /* startActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */; };
 		D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */; };
 /* End PBXBuildFile section */
@@ -44,6 +45,7 @@
 		D60758251CC6A7C500D08AF0 /* studentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentViewController.swift; sourceTree = "<group>"; };
 		D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
+		D69D74801CD247B8007BB9AF /* goodJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goodJobViewController.swift; sourceTree = "<group>"; };
 		D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = startActivityViewController.swift; sourceTree = "<group>"; };
 		D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = overallGraphView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -81,6 +83,7 @@
 				169287D41CAB152F000C8232 /* AppDelegate.swift */,
 				169287D61CAB152F000C8232 /* ViewController.swift */,
 				169287D81CAB152F000C8232 /* Main.storyboard */,
+				D69D74801CD247B8007BB9AF /* goodJobViewController.swift */,
 				16C83A7E1CC91CCC00105E1C /* datepickerCellView.swift */,
 				16C83A801CC9238700105E1C /* careTakerCell.swift */,
 				16C83A821CC924B000105E1C /* nameCell.swift */,
@@ -182,6 +185,7 @@
 				169287E71CAD5F96000C8232 /* clientTableViewController.swift in Sources */,
 				D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */,
 				16C83A831CC924B000105E1C /* nameCell.swift in Sources */,
+				D69D74811CD247B8007BB9AF /* goodJobViewController.swift in Sources */,
 				169287EF1CAD68CC000C8232 /* patientOverallStatsView.swift in Sources */,
 				16C83A7F1CC91CCE00105E1C /* datepickerCellView.swift in Sources */,
 				D60758261CC6A7C500D08AF0 /* studentViewController.swift in Sources */,

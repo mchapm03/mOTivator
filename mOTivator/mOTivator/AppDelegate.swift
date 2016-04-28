@@ -48,11 +48,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // When local notification received, alert user, take them to the startActivity view
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController: startActivityViewController = storyboard.instantiateViewControllerWithIdentifier("startAct") as! startActivityViewController
-        
+        let rvc = self.window!.rootViewController as! UINavigationController
+
         
         let alert = UIAlertController(title: "Alert", message: "Time to complete task." + notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Start Task", style: UIAlertActionStyle.Default, handler: {
-            (action: UIAlertAction!) in self.window?.rootViewController = viewController}))
+            (action: UIAlertAction!) in rvc.pushViewController(viewController, animated: true)}))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))
         self.window?.rootViewController?.presentViewController(alert, animated: true, completion: nil)
     }

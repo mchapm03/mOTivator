@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vxP-0H-NXZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F1713" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="1Ga-I5-NNp">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
@@ -237,6 +237,9 @@
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="9He-5g-T8e" kind="show" id="fNT-tY-TSo"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <variation key="default">
@@ -351,60 +354,48 @@
             <point key="canvasLocation" x="2531" y="27"/>
         </scene>
         <!--View Controller-->
-        <scene sceneID="ubg-Cc-nlN">
+        <scene sceneID="dIE-fj-L6f">
             <objects>
-                <viewController id="EcD-xV-36a" sceneMemberID="viewController">
-                    <connections>
-                        <segue destination="Bcc-Gp-Z76" kind="show" id="ZTs-Ty-yo1"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="WOQ-6Z-t8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1650" y="1425.75"/>
-        </scene>
-        <!--Tasks-->
-        <scene sceneID="Dfh-IC-PBp">
-            <objects>
-                <tableViewController id="Bcc-Gp-Z76" customClass="TaskListTableViewController" customModule="mOTivator" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="Q0V-Ag-sTN">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                <viewController id="9He-5g-T8e" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="7Uy-px-Jpg"/>
+                        <viewControllerLayoutGuide type="bottom" id="BSE-3A-Nem"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="f8i-7m-sgJ">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hik-J3-XC7" customClass="OverallGraphView" customModule="mOTivator" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="startColor">
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="endColor">
+                                        <color key="value" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <variation key="heightClass=regular" fixedFrame="YES">
+                                    <rect key="frame" x="180" y="227" width="240" height="128"/>
+                                </variation>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="taskCell" id="Cut-vk-ffw">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cut-vk-ffw" id="txc-cH-EM1">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GsX-5H-lux">
-                                            <rect key="frame" x="8" y="-27" width="70" height="70"/>
-                                        </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yxI-Xa-4Zx">
-                                            <rect key="frame" x="128" y="8" width="0.0" height="0.0"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Bcc-Gp-Z76" id="MSs-Hm-sSR"/>
-                            <outlet property="delegate" destination="Bcc-Gp-Z76" id="aye-Vf-4Nw"/>
-                        </connections>
-                    </tableView>
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" title="Tasks" id="miE-EX-NuI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="i23-d6-Cng"/>
-                    </navigationItem>
-                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="grO-dv-TzV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="hik-J3-XC7"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular">
+                            <mask key="subviews">
+                                <include reference="hik-J3-XC7"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wP-sl-sp7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2611" y="1360.5"/>
+            <point key="canvasLocation" x="3214" y="23.25"/>
         </scene>
         <!--New Task-->
         <scene sceneID="tfA-fW-uRs">
@@ -643,7 +634,7 @@
         <!--Student View Controller-->
         <scene sceneID="T7l-Wf-6T7">
             <objects>
-                <viewController id="t2H-cP-Idx" customClass="studentViewController" customModule="mOTivator" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="studentView" id="t2H-cP-Idx" customClass="studentViewController" customModule="mOTivator" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="aC9-qJ-7bu"/>
                         <viewControllerLayoutGuide type="bottom" id="4Fh-Ni-nVq"/>

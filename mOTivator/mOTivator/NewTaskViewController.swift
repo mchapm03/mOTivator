@@ -70,7 +70,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             let dateformatter = NSDateFormatter()
             if indexPath.row == 0 {
                 cell.typeLabel.text = "Completion Time"
-                dateformatter.dateFormat = "HH:mm zzz"
+                dateformatter.dateFormat = "h:mm zzz"
                 if let taskPTime = task?.primaryTime {
                     cell.dateLabel.text = dateformatter.stringFromDate(taskPTime)
                     cell.date.date = taskPTime
@@ -237,6 +237,10 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                 imagePickerController.delegate = self
         
                 presentViewController(imagePickerController, animated: true, completion: nil)
+    }
+    
+    // This lets users return to this screen after doing an activity if they were here before
+    @IBAction func unwindToPrevious(sender: UIStoryboardSegue){
     }
     
     

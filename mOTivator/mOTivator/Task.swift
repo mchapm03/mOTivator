@@ -70,7 +70,9 @@ class Task {
         }
         UIApplication.sharedApplication().cancelLocalNotification(notification)
         self.notification.fireDate = self.primaryTime!
-        self.notification.alertBody = "Do your task! " + name
+        self.notification.alertBody = "Time for your task: " + name
+
+        self.notification.userInfo = ["taskName" : name]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     

@@ -68,7 +68,12 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-
+        if segue.identifier == "taskDetailSegue" {
+            let taskDetailVC = segue.destinationViewController as! taskDetailViewController
+            if let selectedTask = sender as? UITableViewCell {
+                taskDetailVC.task = tasks[taskTable.indexPathForCell(selectedTask)!.row]
+            }
+        }
     }
     /*
     // Set up graph:

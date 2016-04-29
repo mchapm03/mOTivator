@@ -10,14 +10,13 @@ import UIKit
 
 class studentViewController: UIViewController, UITableViewDataSource, UITableViewDelegate  {
     
-    @IBOutlet weak var startActivityButton: UIButton!
     @IBOutlet weak var scheduleTaskButton: UIButton!
     @IBOutlet weak var taskTable: UITableView!
     var tasks = [Task]()
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        startActivityButton.setBackgroundImage(UIImage(named: "showering-minion")!, forState: UIControlState.Normal)
+//        startActivityButton.setBackgroundImage(UIImage(named: "showering-minion")!, forState: UIControlState.Normal)
         scheduleTaskButton.setBackgroundImage(UIImage(named: "schedule-minion")!, forState: UIControlState.Normal)
     }
     
@@ -111,6 +110,10 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 taskDetailViewController.task = thisTask
             }
         }
+    }
+
+    // This lets users return to this screen after doing an activity
+    @IBAction func unwindToPrevious(sender: UIStoryboardSegue){
     }
     
 }

@@ -49,9 +49,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController: startActivityViewController = storyboard.instantiateViewControllerWithIdentifier("startAct") as! startActivityViewController
         let rvc = self.window!.rootViewController as! UINavigationController
-
-        
-        let alert = UIAlertController(title: "Alert", message: "Time to complete task." + notification.alertBody!, preferredStyle: UIAlertControllerStyle.Alert)
+        var taskName = "."
+        if let task = notification.userInfo!["taskName"] as? String {
+            taskName = ": "+task
+        }
+        let alert = UIAlertController(title: "Alert", message: "Time to complete task" + taskName, preferredStyle: UIAlertControllerStyle.Alert)
         alert.addAction(UIAlertAction(title: "Start Task", style: UIAlertActionStyle.Default, handler: {
             (action: UIAlertAction!) in rvc.pushViewController(viewController, animated: true)}))
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Default, handler: nil))

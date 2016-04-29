@@ -9,5 +9,15 @@
 import UIKit
 
 class goodJobViewController: UIViewController {
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.setHidesBackButton(true, animated:false)
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "doUnwind", userInfo: nil, repeats: false)
+    }
+    
+    func doUnwind() {
+        self.performSegueWithIdentifier("unwindgJobSegue", sender: self)
+    }
+
 
 }

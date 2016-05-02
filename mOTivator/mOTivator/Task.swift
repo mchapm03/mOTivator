@@ -36,7 +36,7 @@ class Task {
         if secondaryTime != nil{
             self.secondaryTime = secondaryTime
         }
-        setNotifications()
+//        setNotifications()
         
         if (name.isEmpty){
             return nil
@@ -57,22 +57,24 @@ class Task {
         if secondaryTime != nil {
             self.secondaryTime = secondaryTime
         }
-        setNotifications()
+//        setNotifications()
     }
 
     // Set the notification to the time that the user specifies
     func setNotifications(){
-        //if user hasn't granted permissions:
+        //if user hasn't granted permissions, do nothing
         guard let settings = UIApplication.sharedApplication().currentUserNotificationSettings() else { return }
-        
         if settings.types == .None {
             return
         }
+        
+        // If the user has granted permissions to get notifications:
         UIApplication.sharedApplication().cancelLocalNotification(notification)
         self.notification.fireDate = self.primaryTime!
         self.notification.alertBody = "Time for your task: " + name
 
         self.notification.userInfo = ["taskName" : name]
+//        self.notification.userInfo = ["task": self]
         UIApplication.sharedApplication().scheduleLocalNotification(notification)
     }
     

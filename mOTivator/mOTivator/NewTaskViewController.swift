@@ -190,16 +190,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             let eDate = eDateCell.date.date
             
             let photo = taskImage.image
-      
-            //if user hasn't granted permissions:
-//            if let settings = UIApplication.sharedApplication().currentUserNotificationSettings() {
-//                
-//                if settings.types == .None {
-//                    let ac = UIAlertController(title: "Notifications", message: "We don't have permission to schedule notifications, so you won't recieve any.", preferredStyle: .Alert)
-//                    ac.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
-//                    self.presentViewController(ac, animated: true, completion: nil)
-//                }
-//            }
             
             // Set the task to be passed to TaskListViewController after the unwind segue.
             task = Task(name: name!, icon: photo!, primaryTime: pTime, secondaryTime: NSDate(), startDate: sDate, endDate: eDate)

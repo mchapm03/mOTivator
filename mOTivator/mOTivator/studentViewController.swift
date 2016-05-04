@@ -36,6 +36,36 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // load tasks from the server for this patient
     func loadTasks() -> [Task] {
+        if let url = NSURL(string: "https://localhost:3000/getTasks"){
+            let session = NSURLSession.sharedSession()
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            let task = session.dataTaskWithRequest(request){
+                (let data, let response, let error) -> Void in
+                
+                if error != nil {
+                    print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                }
+                
+                if data != nil {
+                    do{
+                        let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                        
+                        if let json = raw as? [[String: AnyObject]] {
+                            for entry in json {
+                                
+                            }
+                        }
+                    }
+                    
+                    catch{
+                        print("other object")
+                    }
+                }
+            }
+            task.resume()
+            
+        }
         return []
     }
     

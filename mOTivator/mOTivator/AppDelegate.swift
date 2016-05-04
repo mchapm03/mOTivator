@@ -50,6 +50,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // When local notification received, alert user, take them to the startActivity view
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let viewController: startActivityViewController = storyboard.instantiateViewControllerWithIdentifier("startAct") as! startActivityViewController
+        viewController.task = notification.userInfo!["taskName"] as? String
         let rvc = self.window!.rootViewController as! UINavigationController
 
         // The user is using another app or no app, but they slide the notification to open the app
@@ -65,7 +66,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             // Alert the user to complete their task, opening the "startActivity" view if they agree
             let alert = UIAlertController(title: "Alert", message: "Time to complete task" + taskName, preferredStyle: UIAlertControllerStyle.Alert)
             alert.addAction(UIAlertAction(title: "Start Task", style: UIAlertActionStyle.Default, handler: {
-                (action: UIAlertAction!) in rvc.pushViewController(viewController, animated: true)}))
+                (action: UIAlertAction!) in
+                rvc.pushViewController(viewController, animated: true)}))
             // Allow user to "snooze the alert"
             alert.addAction(UIAlertAction(title: "Snooze", style: UIAlertActionStyle.Default, handler: {action in
                 // right now snooze is for 15 seconds. 900 would be 15 minutes

@@ -19,8 +19,10 @@ class startActivityViewController: UIViewController {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        detectMovement()
+        if (task != nil){
+            navigationItem.title = task
+        }
+            detectMovement()
         
     }
     

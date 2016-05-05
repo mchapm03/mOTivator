@@ -53,7 +53,8 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                         
                         if let json = raw as? [[String: AnyObject]] {
                             for entry in json {
-                                
+                                print("entry: \(entry)")
+//                                print("json: \(entry[""])")
                             }
                         }
                     }
@@ -112,28 +113,56 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
         if let sourceViewController = sender.sourceViewController as? NewTaskViewController, task = sourceViewController.task {
             if let selectedIndexPath = taskTable.indexPathForSelectedRow {
                 // Update an existing task.
-                // TODO: upload in server
                 tasks[selectedIndexPath.row] = task
                 taskTable.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
                 task.setNotifications()
 
             } else {
                 // Add a new task.
-                // TODO: add new task to server
                 let newIndexPath = NSIndexPath(forRow: tasks.count, inSection: 0)
                 tasks.append(task)
                 print("in tasks")
                 print(tasks)
-                taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)                
+                taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                
+                // Save the task to the server
+                if let url = NSURL(string: "https://localhost:3000/addTask"){
+                    let session = NSURLSession.sharedSession()
+                    let request = NSMutableURLRequest(URL: url)
+                    request.HTTPMethod = "POST"
+                    let paramString = "type=\(task.name)&startDate=\(task.startDate)&endDate=\(task.endDate)&completionTime=\(task.primaryTime)&icon=\(task.icon.accessibilityIdentifier!)&caretakerInfo=\(task.caretaker)&caretakerNotes=\(task.caretakerNotes)"
+                    request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                    let task = session.dataTaskWithRequest(request){
+                        (let data, let response, let error) -> Void in
+                        
+                        if error != nil {
+                            print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                        }
+                        
+                        if data != nil {
+                            do{
+                                let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                                
+                                if let json = raw as? [[String: AnyObject]] {
+                                    for entry in json {
+                                        print("entry: \(entry)")
+                                        //                                print("json: \(entry[""])")
+                                    }
+                                }
+                            }
+                                
+                            catch{
+                                print("other object")
+                            }
+                        }
+                    }
+                    task.resume()
+                    
+                }   //end if let url
             }
-            // Save the tasks.
-            saveTasks()
         }
     }
     
-    func saveTasks(){
-        //TODO:save tasks here
-    }
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "showDetail" {
             let taskDetailViewController = segue.destinationViewController as! NewTaskViewController

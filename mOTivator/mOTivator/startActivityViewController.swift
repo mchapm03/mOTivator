@@ -22,28 +22,99 @@ class startActivityViewController: UIViewController {
         if (task != nil){
             navigationItem.title = task
         }
-            detectMovement()
+        NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: #selector(startActivityViewController.movementDetected), userInfo: nil, repeats: false)
         
     }
     
-    func detectMovement() {
-        let detected = true
+    func movementDetected() {
         // Movement was detected, take user to Good Job View!
-        if detected {
-            //performSegueWithIdentifier("goodJobSegue", sender: self)
+            if let url = NSURL(string: "https://http://192.168.43.34:3000/updateRecord"){
+                let session = NSURLSession.sharedSession()
+                let request = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                let timeNow = NSDate().description
+                let paramString = "type=\(self.task)&record=[\(timeNow),1]"
+                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                let thistask = session.dataTaskWithRequest(request){
+                    (let data, let response, let error) -> Void in
+                    
+                    if error != nil {
+                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                    }
+                    
+                    if data != nil {
+                        do{
+                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                            
+                            if let json = raw as? [[String: AnyObject]] {
+                                for entry in json {
+                                    print("entry: \(entry)")
+                                    //                                print("json: \(entry[""])")
+                                }
+                            }
+                        }
+                            
+                        catch{
+                            print("other object")
+                        }
+                    }
+                }
+                thistask.resume()
+                
+            }   //end if let url...
+
             startActivityButton.sendActionsForControlEvents(.TouchUpInside)
-        }
-        // Activity was not detected, alert user, let them try again, or take them to their "home view"
-        else {
-            let alert = UIAlertController(title: "Alert", message: "No task detected", preferredStyle: UIAlertControllerStyle.Alert)
-
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
-                                (action: UIAlertAction!) in self.performSegueWithIdentifier("unwindSeg", sender: self) }))
-
-            alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
-            self.presentViewController(alert, animated: true, completion: nil)
-        }
     }
+    
+    // Activity was not detected, alert user, let them try again, or take them to their "home view"
+    
+    func notDetected() {
+        let alert = UIAlertController(title: "Alert", message: "No task detected", preferredStyle: UIAlertControllerStyle.Alert)
+
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
+                            (action: UIAlertAction!) in
+            self.performSegueWithIdentifier("unwindSeg", sender: self)
+            //send update to the server that task was not completed
+            if let url = NSURL(string: "https://http://192.168.43.34/:3000/updateRecord"){
+                let session = NSURLSession.sharedSession()
+                let request = NSMutableURLRequest(URL: url)
+                request.HTTPMethod = "POST"
+                let timeNow = NSDate().description
+                let paramString = "type=\(self.task)&record=[\(timeNow),0]"
+                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+                let thistask = session.dataTaskWithRequest(request){
+                    (let data, let response, let error) -> Void in
+                    
+                    if error != nil {
+                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                    }
+                    
+                    if data != nil {
+                        do{
+                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                            
+                            if let json = raw as? [[String: AnyObject]] {
+                                for entry in json {
+                                    print("entry: \(entry)")
+//                                print("json: \(entry[""])")
+                                }
+                            }
+                        }
+                            
+                        catch{
+                            print("other object")
+                        }
+                    }
+                }
+                thistask.resume()
+                
+            }   //end if let url...
+        }))
+
+        alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
+
     
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         return false

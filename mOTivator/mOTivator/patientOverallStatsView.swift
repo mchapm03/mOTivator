@@ -27,18 +27,54 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
         //        setupGraphDisplay()
         
         //TODO: get all this user's tasks
-//        if let tasklist = loadTasks(){
-//            tasks += tasklist
-//        }else{
+        if patient?.name == "Ron"{
+            tasks += loadTasks()
+        }else{
             loadSampleTasks()
-//        }
+        }
         taskTable.delegate = self
         taskTable.dataSource = self
     }
     
+
     // load tasks from the server for this patient
     func loadTasks() -> [Task] {
-        return []
+        var loadedTasks = []
+        if let url = NSURL(string: "https://localhost:3000/getTasks"){
+            let session = NSURLSession.sharedSession()
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            let task = session.dataTaskWithRequest(request){
+                (let data, let response, let error) -> Void in
+                
+                if error != nil {
+                    print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                }
+                
+                if data != nil {
+                    do{
+                        let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                        
+                        if let json = raw as? [[String: AnyObject]] {
+                            for entry in json {
+                                print("entry: \(entry)")
+                                // Add new task to loadedTasks
+                                //Task(name: entry["type"], icon: UIImage(named: entry["icon"], color: entry["color"], primaryTime: entry["completionTime"], secondaryTime: nil, startDate: entry["startDate"], endDate: entry["endDate"])
+                                //                                print("json: \(entry[""])")
+                            }
+                        }
+                    }
+                        
+                    catch{
+                        print("other object")
+                    }
+                }
+            }
+            task.resume()
+            
+        }
+        return loadedTasks as! [Task]
+        
     }
     
     func loadSampleTasks() {

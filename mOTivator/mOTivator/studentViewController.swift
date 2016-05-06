@@ -27,16 +27,19 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
         taskTable.delegate = self
         taskTable.dataSource = self
         
-//        if let loadedTasks = loadTasks() {
-//            tasks += loadedTasks
+        
+        
+//        if let loadedTasks = loadTasks() as? [Task] {
+            tasks += loadTasks()
 //        }else {
-            loadSampleTasks()
+//            loadSampleTasks()
 //        }
     }
     
     // load tasks from the server for this patient
     func loadTasks() -> [Task] {
-        if let url = NSURL(string: "https://localhost:3000/getTasks"){
+        var loadedTasks = []
+        if let url = NSURL(string: "http://192.168.43.34:3000/getTasks"){
             let session = NSURLSession.sharedSession()
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
@@ -53,12 +56,14 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                         
                         if let json = raw as? [[String: AnyObject]] {
                             for entry in json {
-                                print("entry: \(entry)")
-//                                print("json: \(entry[""])")
+                                print("entry: \(entry["type"])")
+                                // Add new task to loadedTasks
+                                //Task(name: entry["type"], icon: UIImage(named: entry["icon"], color: entry["colorAll"], primaryTime: entry["completionTime"], secondaryTime: nil, startDate: entry["startDate"], endDate: entry["endDate"])
+                                //                                print("json: \(entry[""])")
                             }
                         }
                     }
-                    
+                        
                     catch{
                         print("other object")
                     }
@@ -66,8 +71,9 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
             }
             task.resume()
             
+        
         }
-        return []
+        return loadedTasks as! [Task]
     }
     
     // load sample tasks
@@ -126,7 +132,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
                 
                 // Save the task to the server
-                if let url = NSURL(string: "https://localhost:3000/addTask"){
+                if let url = NSURL(string: "https://192.168.43.34:3000/addTask"){
                     let session = NSURLSession.sharedSession()
                     let request = NSMutableURLRequest(URL: url)
                     request.HTTPMethod = "POST"

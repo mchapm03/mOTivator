@@ -39,6 +39,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
     // load tasks from the server for this patient
     func loadTasks() -> [Task] {
         var loadedTasks = []
+        // THIS REQUEST GETS STUFF
         if let url = NSURL(string: "http://192.168.43.34:3000/getTasks"){
             let session = NSURLSession.sharedSession()
             let request = NSMutableURLRequest(URL: url)
@@ -132,10 +133,11 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
                 
                 // Save the task to the server
-                if let url = NSURL(string: "https://192.168.43.34:3000/addTask"){
+                if let url = NSURL(string: "http://192.168.43.34:3000/addTask"){
                     let session = NSURLSession.sharedSession()
                     let request = NSMutableURLRequest(URL: url)
                     request.HTTPMethod = "POST"
+                    // PUT IN THE PARAMS
                     let paramString = "type=\(task.name)&startDate=\(task.startDate)&endDate=\(task.endDate)&completionTime=\(task.primaryTime)&icon=\(task.icon.accessibilityIdentifier!)&caretakerInfo=\(task.caretaker)&caretakerNotes=\(task.caretakerNotes)"
                     request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
                     let task = session.dataTaskWithRequest(request){

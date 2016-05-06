@@ -40,7 +40,7 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
     // load tasks from the server for this patient
     func loadTasks() -> [Task] {
         var loadedTasks = []
-        if let url = NSURL(string: "https://localhost:3000/getTasks"){
+        if let url = NSURL(string: "http://localhost:3000/getTasks"){
             let session = NSURLSession.sharedSession()
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"

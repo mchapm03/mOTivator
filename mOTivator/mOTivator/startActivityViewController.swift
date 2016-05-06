@@ -28,7 +28,7 @@ class startActivityViewController: UIViewController {
     
     func movementDetected() {
         // Movement was detected, take user to Good Job View!
-            if let url = NSURL(string: "https://192.168.43.34:3000/updateRecord"){
+            if let url = NSURL(string: "http://192.168.43.34:3000/updateRecord"){
                 let session = NSURLSession.sharedSession()
                 let request = NSMutableURLRequest(URL: url)
                 request.HTTPMethod = "POST"
@@ -75,7 +75,7 @@ class startActivityViewController: UIViewController {
                             (action: UIAlertAction!) in
             self.performSegueWithIdentifier("unwindSeg", sender: self)
             //send update to the server that task was not completed
-            if let url = NSURL(string: "https://192.168.43.34:3000/updateRecord"){
+            if let url = NSURL(string: "http://192.168.43.34:3000/updateRecord"){
                 let session = NSURLSession.sharedSession()
                 let request = NSMutableURLRequest(URL: url)
                 request.HTTPMethod = "POST"

@@ -26,6 +26,76 @@ class startActivityViewController: UIViewController {
         
     }
     
+    var taskTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("checkData"), userInfo: nil, repeats: )
+    
+    func checkData()
+    {
+        var taskFound = false;
+        
+        //make post request to get raw data from server
+        //is this data already arranged into column form?
+        serverData = loadRawData()
+        
+        //filter data with Kalman Filter
+        //Jerry, your kalman filter function called here
+        filteredData = kalmanFilter(serverData)
+        
+        //check what task is being searched for
+        if(task=="brush teeth"){
+            //Jerry your teeth brushing algorithm called here
+            taskFound = isTeethBrushFound(filteredData)
+        }
+        if(task=="task2namehere"){
+            //Jerry your task 2 algorithm called here
+            taskFound = isTask2Found(filteredData)
+        }
+        
+        //once task found, stop timer
+        if(taskFound)
+        {
+            [timer invalidate];
+            timer = nil;
+        }
+    }
+    
+    func loadRawData() -> [RawData] {
+        var loadedData = []
+        if let url = NSURL(string: "http://192.168.43.34:3000/getData"){
+            let session = NSURLSession.sharedSession()
+            let request = NSMutableURLRequest(URL: url)
+            request.HTTPMethod = "POST"
+            let rawData = session.dataTaskWithRequest(request){
+                (let data, let response, let error) -> Void in
+                
+                if error != nil {
+                    print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+                }
+                
+                if data != nil {
+                    do{
+                        let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+                        
+                        if let json = raw as? [[String: AnyObject]] {
+                            for entry in json {
+                                print("entry: \(entry)")
+                                //RawData(rawData: entry["data"])
+                                //print("json: \(entry[""])")
+                            }
+                        }
+                    }
+                        
+                    catch{
+                        print("other object")
+                    }
+                }
+            }
+            rawData.resume()
+            
+        }
+        return loadedData as! [RawData]
+        
+    }
+    
     func movementDetected() {
         // Movement was detected, take user to Good Job View!
             if let url = NSURL(string: "http://192.168.43.34:3000/updateRecord"){

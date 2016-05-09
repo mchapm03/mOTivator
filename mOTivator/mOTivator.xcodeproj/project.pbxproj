@@ -26,6 +26,9 @@
 		D69D74811CD247B8007BB9AF /* goodJobViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D69D74801CD247B8007BB9AF /* goodJobViewController.swift */; };
 		D6D91C6A1CC4606A00E0C436 /* startActivityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */; };
 		D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */; };
+		F157DDED1CDFFCA7005A3374 /* kalmanFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F157DDEC1CDFFCA7005A3374 /* kalmanFilterViewController.swift */; };
+		F157DDEF1CDFFD6D005A3374 /* ABMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = F157DDEE1CDFFD6D005A3374 /* ABMatrix.swift */; };
+		F157DDF11CDFFDB8005A3374 /* kalmanFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F157DDF01CDFFDB8005A3374 /* kalmanFilter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +53,9 @@
 		D69D74801CD247B8007BB9AF /* goodJobViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = goodJobViewController.swift; sourceTree = "<group>"; };
 		D6D91C691CC4606A00E0C436 /* startActivityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = startActivityViewController.swift; sourceTree = "<group>"; };
 		D6FE1C451CB2AB6A00E95B17 /* overallGraphView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = overallGraphView.swift; sourceTree = "<group>"; };
+		F157DDEC1CDFFCA7005A3374 /* kalmanFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kalmanFilterViewController.swift; sourceTree = "<group>"; };
+		F157DDEE1CDFFD6D005A3374 /* ABMatrix.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ABMatrix.swift; sourceTree = "<group>"; };
+		F157DDF01CDFFDB8005A3374 /* kalmanFilter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = kalmanFilter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,9 +90,12 @@
 			children = (
 				169287D41CAB152F000C8232 /* AppDelegate.swift */,
 				169287D61CAB152F000C8232 /* ViewController.swift */,
+				F157DDF01CDFFDB8005A3374 /* kalmanFilter.swift */,
 				169287D81CAB152F000C8232 /* Main.storyboard */,
 				D69C631A1CD3A4D40004F0C6 /* taskDetailViewController.swift */,
 				D69D74801CD247B8007BB9AF /* goodJobViewController.swift */,
+				F157DDEC1CDFFCA7005A3374 /* kalmanFilterViewController.swift */,
+				F157DDEE1CDFFD6D005A3374 /* ABMatrix.swift */,
 				16C83A7E1CC91CCC00105E1C /* datepickerCellView.swift */,
 				16C83A801CC9238700105E1C /* careTakerCell.swift */,
 				16C83A821CC924B000105E1C /* nameCell.swift */,
@@ -180,11 +189,14 @@
 				D6D91C6A1CC4606A00E0C436 /* startActivityViewController.swift in Sources */,
 				169287D71CAB152F000C8232 /* ViewController.swift in Sources */,
 				169287EB1CAD6548000C8232 /* Patient.swift in Sources */,
+				F157DDED1CDFFCA7005A3374 /* kalmanFilterViewController.swift in Sources */,
 				D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */,
 				169287ED1CAD6608000C8232 /* Task.swift in Sources */,
 				D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */,
+				F157DDEF1CDFFD6D005A3374 /* ABMatrix.swift in Sources */,
 				16C83A811CC9238900105E1C /* careTakerCell.swift in Sources */,
 				169287D51CAB152F000C8232 /* AppDelegate.swift in Sources */,
+				F157DDF11CDFFDB8005A3374 /* kalmanFilter.swift in Sources */,
 				169287E71CAD5F96000C8232 /* clientTableViewController.swift in Sources */,
 				D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */,
 				16C83A831CC924B000105E1C /* nameCell.swift in Sources */,

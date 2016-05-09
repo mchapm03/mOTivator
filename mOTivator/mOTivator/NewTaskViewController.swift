@@ -5,6 +5,8 @@
 //  Created by Chapman, Margaret E. on 4/3/16.
 //  Copyright © 2016 Tufts. All rights reserved.
 //
+//  This view controller allows users to add new tasks and modify existing ones. 
+//
 
 import UIKit
 
@@ -22,6 +24,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     This value is either passed by `TaskListTableViewController` in `prepareForSegue(_:sender:)`
     or constructed as part of adding a new task.
     */
+    
     var task : Task?
     
     
@@ -45,6 +48,8 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
     
     // Table View functions:
     
+    // table has 3 sections. The first is the name input, the second holds the date inputs and the last
+    // is the caretaker information input.
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
     }
@@ -58,6 +63,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         }
     }
 
+    // add the appropriate cells to each section
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0{
             let cell = newTaskTable.dequeueReusableCellWithIdentifier("nameCell", forIndexPath: indexPath) as! nameCell
@@ -70,7 +76,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
             let dateformatter = NSDateFormatter()
             if indexPath.row == 0 {
                 cell.typeLabel.text = "Completion Time"
-                dateformatter.dateFormat = "h:mm zzz"
+                dateformatter.timeStyle = NSDateFormatterStyle.MediumStyle
                 if let taskPTime = task?.primaryTime {
                     cell.dateLabel.text = dateformatter.stringFromDate(taskPTime)
                     cell.date.date = taskPTime
@@ -124,8 +130,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         }
     }
     
-    //to make some expandable:
-
+    //to make some cells expandable:
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if indexPath.section == 1 {
             switch selectedIndexPath {
@@ -138,7 +143,6 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
                     selectedIndexPath = indexPath
                 }
             }
-//            tableView.reloadRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Automatic)
             tableView.reloadData()
         }
     }
@@ -196,7 +200,7 @@ class NewTaskViewController: UIViewController, UITextFieldDelegate, UIImagePicke
         }
     }
 
-    // MARK: UIImagePickerControllerDelegate
+    // MARK: UIImagePickerControllerDelegate for adding an image icon to tasks
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         // Dismiss the picker if the user canceled.
         dismissViewControllerAnimated(true, completion: nil)

@@ -17,6 +17,8 @@ class startActivityViewController: UIViewController {
     
     var task: String?
     
+    var taskFound = false
+
     // initialize a kalman filter class
     let KFilter = kalmanFilterViewController()
     
@@ -33,16 +35,14 @@ class startActivityViewController: UIViewController {
         if (task != nil){
             navigationItem.title = task
         }
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: #selector(startActivityViewController.movementDetected), userInfo: nil, repeats: false)
+        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: #selector(startActivityViewController.notDetected), userInfo: nil, repeats: false)
         
         taskTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(startActivityViewController.checkData), userInfo: nil, repeats: true)
         
         // Animate the background so that the user knows something is happening
         UIView.animateWithDuration(2, delay: 0.0, options:[UIViewAnimationOptions.Repeat, UIViewAnimationOptions.Autoreverse], animations: {
-            self.view.backgroundColor = UIColor.blackColor()
-            self.view.backgroundColor = UIColor.greenColor()
-            self.view.backgroundColor = UIColor.grayColor()
-            self.view.backgroundColor = UIColor.redColor()
+            self.view.backgroundColor = UIColor.orangeColor()
+            self.view.backgroundColor = UIColor.whiteColor()
             }, completion: nil)
     }
     
@@ -50,21 +50,10 @@ class startActivityViewController: UIViewController {
     
     func checkData()
     {
-        var taskFound = false;
         
         //make post request to get raw data from server
         //is this data already arranged into column form?
-        let serverData = loadRawData()
-        
-        //check what task is being searched for
-        if(task?.lowercaseString == "brush teeth"){
-            // Teeth brushing algorithm called here with accel data
-            taskFound = KFilter.toothBrushingDetected(serverData[0])
-        }
-        if(task?.lowercaseString == "brush hair"){
-            // Hair brushing algoithm called here with gyro data
-            taskFound = KFilter.hairBrushingDetected(serverData[1])
-        }
+        loadRawData()
         
         //once task found, stop timer
         if(taskFound)
@@ -73,8 +62,9 @@ class startActivityViewController: UIViewController {
         }
     }
     
-    func loadRawData() -> [ABMatrix] {
-        var loadedData = [ABMatrix]()
+    func loadRawData(){
+        var loadedAccelData : ABMatrix = ABMatrix(row: 0, col: 0)
+        var loadedGyroData : ABMatrix = ABMatrix(row: 0, col: 0)
         if let url = NSURL(string: "http://192.168.108.13:3000/getData"){
             let session = NSURLSession.sharedSession()
             let request = NSMutableURLRequest(URL: url)
@@ -92,9 +82,25 @@ class startActivityViewController: UIViewController {
                         
                         if let json = raw as? [[String: AnyObject]] {
                             for entry in json {
-                                print("entry: \(entry)")
-                                //RawData(rawData: entry["data"])
-                                //print("json: \(entry[""])")
+                                print("entry: \(entry["accel"])")
+                                print("entry: \(entry["gyro"])")
+                                
+                                if let accelData = entry["accel"] as? String {
+                                    //check what task is being searched for
+                                    if(self.task?.lowercaseString == "brush teeth"){
+                                        loadedAccelData = self.parsetoArray(accelData)
+                                        print("calling brush teeth")
+                                        // Teeth brushing algorithm called here with accel data
+                                        self.taskFound = self.KFilter.toothBrushingDetected(loadedAccelData)
+                                    }
+                                }
+                                if let gyroData = entry["gyro"] as? String {
+                                    if(self.task?.lowercaseString == "brush hair"){
+                                        loadedGyroData = self.parsetoArray(gyroData)
+                                        // Hair brushing algoithm called here with gyro data
+                                        self.taskFound = self.KFilter.hairBrushingDetected(loadedGyroData)
+                                    }
+                                }
                             }
                         }
                     }
@@ -102,13 +108,13 @@ class startActivityViewController: UIViewController {
                     catch{
                         print("other object")
                     }
+                    
+
                 }
             }
             rawData.resume()
             
         }
-        return loadedData as! [ABMatrix]
-        
     }
     
     func movementDetected() {
@@ -159,47 +165,64 @@ class startActivityViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: {
                             (action: UIAlertAction!) in
             self.performSegueWithIdentifier("unwindSeg", sender: self)
-            //send update to the server that task was not completed
-            if let url = NSURL(string: "http://192.168.108.13:3000/updateRecord"){
-                let session = NSURLSession.sharedSession()
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "POST"
-                let timeNow = NSDate().description
-                let paramString = "type=\(self.task)&record=[\(timeNow),0]"
-                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-                let thistask = session.dataTaskWithRequest(request){
-                    (let data, let response, let error) -> Void in
-                    
-                    if error != nil {
-                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
-                    }
-                    
-                    if data != nil {
-                        do{
-                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                            
-                            if let json = raw as? [[String: AnyObject]] {
-                                for entry in json {
-                                    print("entry: \(entry)")
-//                                print("json: \(entry[""])")
-                                }
-                            }
-                        }
-                            
-                        catch{
-                            print("other object")
-                        }
-                    }
-                }
-                thistask.resume()
-                
-            }   //end if let url...
+//            //send update to the server that task was not completed
+//            if let url = NSURL(string: "http://192.168.108.13:3000/updateRecord"){
+//                let session = NSURLSession.sharedSession()
+//                let request = NSMutableURLRequest(URL: url)
+//                request.HTTPMethod = "POST"
+//                let timeNow = NSDate().description
+//                let paramString = "type=\(self.task)&record=[\(timeNow),0]"
+//                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+//                let thistask = session.dataTaskWithRequest(request){
+//                    (let data, let response, let error) -> Void in
+//                    
+//                    if error != nil {
+//                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+//                    }
+//                    
+//                    if data != nil {
+//                        do{
+//                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+//                            
+//                            if let json = raw as? [[String: AnyObject]] {
+//                                for entry in json {
+//                                    print("entry: \(entry)")
+////                                print("json: \(entry[""])")
+//                                }
+//                            }
+//                        }
+//                            
+//                        catch{
+//                            print("other object")
+//                        }
+//                    }
+//                }
+//                thistask.resume()
+//                
+//            }   //end if let url...
         }))
 
         alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
 
+    func parsetoArray(dataString: String) -> ABMatrix {
+        var currentNum = ""
+        var allValues = [Double]()
+        let i = dataString.startIndex
+        while (i != dataString.endIndex){
+            if dataString[i] == " "{
+                allValues += [Double(currentNum)!]
+                currentNum = ""
+                i.successor()
+            }else {
+                currentNum.append(dataString[i])
+                i.successor()
+            }
+        }
+        
+        return ABMatrix(matrix: allValues, row: (allValues.count/3), col: 3)
+    }
     
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {
         return false

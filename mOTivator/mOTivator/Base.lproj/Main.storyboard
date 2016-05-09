@@ -448,7 +448,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Task Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="dMb-vY-VED">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="5" width="584" height="30"/>
@@ -479,14 +479,27 @@
                                                 <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="time" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="Fxt-cQ-989">
                                                     <rect key="frame" x="100" y="249" width="280" height="80"/>
                                                     <color key="backgroundColor" red="0.80890940659999999" green="0.80890940659999999" blue="0.80890940659999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="216" id="ZKh-rx-X4U"/>
+                                                    </constraints>
                                                     <date key="date" timeIntervalSinceReferenceDate="481511490.468355">
                                                         <!--2016-04-05 01:11:30 +0000-->
                                                     </date>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="ZKh-rx-X4U"/>
+                                                        </mask>
+                                                    </variation>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="0.0" y="29" width="600" height="210"/>
                                                     </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="ZKh-rx-X4U"/>
+                                                        </mask>
+                                                    </variation>
                                                 </datePicker>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl2-jR-PK7">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kl2-jR-PK7">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -494,22 +507,54 @@
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="8" width="246" height="21"/>
                                                     </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact" ambiguous="YES">
+                                                        <rect key="frame" x="16" y="0.0" width="42" height="21"/>
+                                                    </variation>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKE-6f-BWe">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKE-6f-BWe">
                                                     <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="142" id="d16-62-9NI"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
+                                                    <variation key="default">
+                                                        <mask key="constraints">
+                                                            <exclude reference="d16-62-9NI"/>
+                                                        </mask>
+                                                    </variation>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="254" y="8" width="346" height="21"/>
                                                     </variation>
+                                                    <variation key="heightClass=regular-widthClass=compact">
+                                                        <mask key="constraints">
+                                                            <include reference="d16-62-9NI"/>
+                                                        </mask>
+                                                    </variation>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="kl2-jR-PK7" firstAttribute="leading" secondItem="Sq8-jd-Jxn" secondAttribute="leadingMargin" constant="8" id="Mhf-E4-Nsk"/>
+                                                <constraint firstItem="CKE-6f-BWe" firstAttribute="top" secondItem="Sq8-jd-Jxn" secondAttribute="topMargin" constant="-8" id="g5e-RT-9vg"/>
+                                                <constraint firstItem="Fxt-cQ-989" firstAttribute="leading" secondItem="Sq8-jd-Jxn" secondAttribute="leadingMargin" constant="-8" id="iAh-r7-rEu"/>
+                                                <constraint firstItem="Fxt-cQ-989" firstAttribute="top" secondItem="CKE-6f-BWe" secondAttribute="bottom" constant="8" id="lTV-5T-Zzv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="CKE-6f-BWe" secondAttribute="trailing" id="lak-K4-lJM"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="Fxt-cQ-989" secondAttribute="trailing" constant="-8" id="uF6-Dp-tga"/>
+                                            </constraints>
                                             <variation key="default">
                                                 <mask key="subviews">
                                                     <exclude reference="Fxt-cQ-989"/>
                                                     <exclude reference="kl2-jR-PK7"/>
                                                     <exclude reference="CKE-6f-BWe"/>
+                                                </mask>
+                                                <mask key="constraints">
+                                                    <exclude reference="Mhf-E4-Nsk"/>
+                                                    <exclude reference="iAh-r7-rEu"/>
+                                                    <exclude reference="lTV-5T-Zzv"/>
+                                                    <exclude reference="uF6-Dp-tga"/>
+                                                    <exclude reference="g5e-RT-9vg"/>
+                                                    <exclude reference="lak-K4-lJM"/>
                                                 </mask>
                                             </variation>
                                             <variation key="heightClass=regular">
@@ -517,6 +562,16 @@
                                                     <include reference="Fxt-cQ-989"/>
                                                     <include reference="kl2-jR-PK7"/>
                                                     <include reference="CKE-6f-BWe"/>
+                                                </mask>
+                                            </variation>
+                                            <variation key="heightClass=regular-widthClass=compact">
+                                                <mask key="constraints">
+                                                    <include reference="Mhf-E4-Nsk"/>
+                                                    <include reference="iAh-r7-rEu"/>
+                                                    <include reference="lTV-5T-Zzv"/>
+                                                    <include reference="uF6-Dp-tga"/>
+                                                    <include reference="g5e-RT-9vg"/>
+                                                    <include reference="lak-K4-lJM"/>
                                                 </mask>
                                             </variation>
                                         </tableViewCellContentView>
@@ -534,7 +589,7 @@
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aPh-fS-BfV">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="8" width="584" height="30"/>
@@ -542,7 +597,7 @@
                                                 </textField>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Caretaker Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="NkS-gF-3Ao">
                                                     <rect key="frame" x="-25" y="-30" width="97" height="30"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="46" width="584" height="30"/>
@@ -551,7 +606,7 @@
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="5FR-Ts-W4r">
                                                     <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                                     <variation key="heightClass=regular" fixedFrame="YES">
                                                         <rect key="frame" x="8" y="84" width="584" height="122"/>

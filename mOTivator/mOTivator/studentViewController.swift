@@ -39,7 +39,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
     // load tasks from the server for this patient
     func loadTasks() {
         // THIS REQUEST GETS STUFF
-        if let url = NSURL(string: "http://192.168.108.13:3000/getTasks"){
+        if let url = NSURL(string: "http://192.168.43.243:3000/getTasks"){
             let session = NSURLSession.sharedSession()
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
@@ -163,7 +163,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     // load sample tasks
     func loadSampleTasks() {
-        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "brush teeth")!, color: UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 10), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!]
+        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "brush teeth")!, color: UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 1), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!]
         tasks[0].setNotifications()
         
     }
@@ -221,7 +221,8 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
                 
                 // Save the task to the server
-                if let url = NSURL(string: "http://192.168.108.13:3000/addTask"){
+                if let url = NSURL(string: "http://192.168.43.243:3000/addTask"){
+                    print("in url")
                     let session = NSURLSession.sharedSession()
                     let request = NSMutableURLRequest(URL: url)
                     request.HTTPMethod = "POST"
@@ -250,23 +251,10 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                         if error != nil {
                             print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
                         }
-                        
-                        if data != nil {
-                            do{
-                                let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                                
-                                if let json = raw as? [[String: AnyObject]] {
-                                    for entry in json {
-                                        print("entry: \(entry)")
-                                        //                                print("json: \(entry[""])")
-                                    }
-                                }
-                            }
-                                
-                            catch{
-                                print("other object")
-                            }
-                        }
+//                        print(response)
+//                        if response["status"] != 200 {
+//                            print("server not working")
+//                        }
                     }
                     task.resume()
                     

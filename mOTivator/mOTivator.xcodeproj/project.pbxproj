@@ -19,6 +19,7 @@
 		16C83A7F1CC91CCE00105E1C /* datepickerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C83A7E1CC91CCC00105E1C /* datepickerCellView.swift */; };
 		16C83A811CC9238900105E1C /* careTakerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C83A801CC9238700105E1C /* careTakerCell.swift */; };
 		16C83A831CC924B000105E1C /* nameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16C83A821CC924B000105E1C /* nameCell.swift */; };
+		16D9AE751CE1185600DA95FF /* taskCompletedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D9AE741CE1185500DA95FF /* taskCompletedCell.swift */; };
 		D60758261CC6A7C500D08AF0 /* studentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D60758251CC6A7C500D08AF0 /* studentViewController.swift */; };
 		D65842A61CB1F129003D4BEB /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */; };
 		D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */; };
@@ -46,6 +47,7 @@
 		16C83A7E1CC91CCC00105E1C /* datepickerCellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = datepickerCellView.swift; sourceTree = "<group>"; };
 		16C83A801CC9238700105E1C /* careTakerCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = careTakerCell.swift; sourceTree = "<group>"; };
 		16C83A821CC924B000105E1C /* nameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = nameCell.swift; sourceTree = "<group>"; };
+		16D9AE741CE1185500DA95FF /* taskCompletedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = taskCompletedCell.swift; sourceTree = "<group>"; };
 		D60758251CC6A7C500D08AF0 /* studentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = studentViewController.swift; sourceTree = "<group>"; };
 		D65842A51CB1F129003D4BEB /* TaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
 		D65842A71CB1FD96003D4BEB /* NewTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewTaskViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				169287D61CAB152F000C8232 /* ViewController.swift */,
 				F157DDF01CDFFDB8005A3374 /* kalmanFilter.swift */,
 				169287D81CAB152F000C8232 /* Main.storyboard */,
+				16D9AE741CE1185500DA95FF /* taskCompletedCell.swift */,
 				D69C631A1CD3A4D40004F0C6 /* taskDetailViewController.swift */,
 				D69D74801CD247B8007BB9AF /* goodJobViewController.swift */,
 				F157DDEC1CDFFCA7005A3374 /* kalmanFilterViewController.swift */,
@@ -192,6 +195,7 @@
 				F157DDED1CDFFCA7005A3374 /* kalmanFilterViewController.swift in Sources */,
 				D65842A81CB1FD96003D4BEB /* NewTaskViewController.swift in Sources */,
 				169287ED1CAD6608000C8232 /* Task.swift in Sources */,
+				16D9AE751CE1185600DA95FF /* taskCompletedCell.swift in Sources */,
 				D6FE1C461CB2AB6A00E95B17 /* overallGraphView.swift in Sources */,
 				F157DDEF1CDFFD6D005A3374 /* ABMatrix.swift in Sources */,
 				16C83A811CC9238900105E1C /* careTakerCell.swift in Sources */,

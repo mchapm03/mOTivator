@@ -2,10 +2,10 @@
 //  TaskListTableViewController.swift
 //  mOTivator
 //
-//  This is the View Controller for the tasks list view. The view shows the tasks for the client.
-//
 //  Created by Chapman, Margaret E. on 4/3/16.
 //  Copyright © 2016 Tufts. All rights reserved.
+//
+//  This is the View Controller for the tasks list view. The view shows the tasks for the client.
 //
 
 import UIKit

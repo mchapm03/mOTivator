@@ -1354,7 +1354,7 @@ class kalmanFilterViewController: UIViewController {
     
     
     //Function to demo Accel data
-    func toothBrushingDetected() -> (boolean) {
+    func toothBrushingDetected(accelMatrix: ABMatrix) -> Bool {
         if (counter == 0) {
             obj = KalmanFilter(StateMatrix: [1,0,0,0,1,0, 0,0,1])
             let dataTrans = accelMatrix.Transpose()
@@ -1387,10 +1387,10 @@ class kalmanFilterViewController: UIViewController {
         
         if f[indexMax] > 2 && f[indexMax] < 5 {
             print("Brushing Teeth Detected")
-            return True
+            return true
         }
         else{
-            return False
+            return false
         }
     
         print("the freq info is strongest at \(f[indexMax]), which is \(maxVal)")
@@ -1443,7 +1443,7 @@ class kalmanFilterViewController: UIViewController {
     
     
     //function to demo Gyro data
-    @IBAction func Trigger_draw(sender: UIButton) {
+    func hairBrushingDetected(gyroMatrix: ABMatrix) -> Bool{
         if(detectCount == 0.0){
             
             gyroM = gyroMatrix.Transpose()
@@ -1474,6 +1474,10 @@ class kalmanFilterViewController: UIViewController {
                     let brushingfreq = timeInterval / detectCount
                     if brushingfreq < 2 {
                         Press_button.text = "hair brushing detected with detectCount = \(detectCount)"
+                        return true
+                    }
+                    else{
+                        return false
                     }
                 }
             }
@@ -1481,6 +1485,7 @@ class kalmanFilterViewController: UIViewController {
             usleep(10000)
         }
         detectCount = 0
+        return false
     }
     
     override func viewDidLoad() {

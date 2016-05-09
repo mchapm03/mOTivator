@@ -5,6 +5,8 @@
 //  Created by Margaret Chapman on 3/31/16.
 //  Copyright © 2016 Tufts. All rights reserved.
 //
+//  This shows the list of an OTs clients to the OT.
+//
 
 import UIKit
 

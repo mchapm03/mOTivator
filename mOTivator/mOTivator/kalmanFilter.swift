@@ -1,3 +1,12 @@
+//
+//  ViewController.swift
+//  mOTivator
+//
+//  Created by Jerry Hu on 3/29/16.
+//  Copyright © 2016 Tufts. All rights reserved.
+//
+//  This class filters out noise and other errors in the data.
+//
 
 import Accelerate
 

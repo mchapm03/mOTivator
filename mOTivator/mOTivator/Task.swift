@@ -5,6 +5,8 @@
 //  Created by Margaret Chapman on 3/31/16.
 //  Copyright © 2016 Tufts. All rights reserved.
 //
+//  The task class defines individual tasks. It includes their name as well as many other properties.
+//
 
 import UIKit
 import Foundation
@@ -12,9 +14,7 @@ import Foundation
 class Task {
     // Mark: Properties
     var name: String
-    // TODO: figure out type of icon
     var icon: UIImage
-    // TODO: figure time format
     var primaryTime:NSDate?
     var secondaryTime:NSDate?
     var timeAssigned = [NSDate]()
@@ -58,6 +58,30 @@ class Task {
             self.secondaryTime = secondaryTime
         }
 //        setNotifications()
+    }
+    
+    
+    init?(name: String, icon: UIImage, color: UIColor, primaryTime: NSDate, secondaryTime: NSDate?, startDate: NSDate, endDate: NSDate, caretaker: (String, String)?, caretakerNotes: String?){
+        self.name = name
+        self.icon = icon
+        self.color = color
+        self.startDate = startDate
+        self.endDate = endDate
+        self.primaryTime = primaryTime
+        
+        if (name.isEmpty){
+            return nil
+        }
+        if secondaryTime != nil {
+            self.secondaryTime = secondaryTime
+        }
+        if (caretaker != nil) {
+            self.caretaker = caretaker
+        }
+        if caretakerNotes != nil {
+            self.caretakerNotes = caretakerNotes
+        }
+        //        setNotifications()
     }
 
     // Set the notification to the time that the user specifies

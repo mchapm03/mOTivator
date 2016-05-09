@@ -30,17 +30,16 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
         
         
 //        if let loadedTasks = loadTasks() as? [Task] {
-            tasks += loadTasks()
+            //loadTasks()
 //        }else {
-//            loadSampleTasks()
+            loadSampleTasks()
 //        }
     }
     
     // load tasks from the server for this patient
-    func loadTasks() -> [Task] {
-        var loadedTasks = []
+    func loadTasks() {
         // THIS REQUEST GETS STUFF
-        if let url = NSURL(string: "http://192.168.43.34:3000/getTasks"){
+        if let url = NSURL(string: "http://192.168.108.13:3000/getTasks"){
             let session = NSURLSession.sharedSession()
             let request = NSMutableURLRequest(URL: url)
             request.HTTPMethod = "POST"
@@ -59,8 +58,91 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                             for entry in json {
                                 print("entry: \(entry["type"])")
                                 // Add new task to loadedTasks
-                                //Task(name: entry["type"], icon: UIImage(named: entry["icon"], color: entry["colorAll"], primaryTime: entry["completionTime"], secondaryTime: nil, startDate: entry["startDate"], endDate: entry["endDate"])
-                                //                                print("json: \(entry[""])")
+                                
+                                // Get color
+                                var taskColor = UIColor.blackColor()
+                                if let thisColor = entry["colorAll"] as? String {
+                                    if thisColor == "green" {
+                                        taskColor = UIColor.greenColor()
+                                    }else if thisColor == "red"{
+                                        taskColor = UIColor.redColor()
+                                    }else if thisColor == "yellow" {
+                                        taskColor = UIColor.yellowColor()
+                                    }
+                                }
+                                
+                                // Get icon
+                                var taskIcon: UIImage
+//                                if entry["icon"] != nil {
+//                                    if UIImage(named: entry["icon"]! as! String) != nil{
+//                                        taskIcon = UIImage(named: entry["icon"]! as! String)!
+//                                    }else {
+//                                        taskIcon = UIImage(named: "motivator_iconcopy")!
+//
+//                                    }
+//                                }else {
+//                                    taskIcon = UIImage(named: "motivator_iconcopy")!
+//                                }
+                                
+                                if UIImage(named: entry["task"]!.lowercaseString as String) != nil{
+                                    taskIcon = UIImage(named: entry["task"]!.lowercaseString as String)!
+                                }else {
+                                    taskIcon = UIImage(named: "motivator_iconcopy")!
+
+                                }
+
+                                
+                                // Get Caretaker stuff
+//                                var caretaker : (String, String) = ("", "")
+//                                var caretakerNotes: String = ""
+//                                if entry["caretaker"] != nil {
+//                                    let raw = try NSJSONSerialization.JSONObjectWithData(entry["caretaker"]!, options: .MutableContainers)
+//                                    
+//                                    if let caretakerjson = raw as? [[String: String]] {                                    caretaker = (caretakerjson["contactInfo"])
+//                                        caretakerNotes = caretakerjson["notes"]
+//                                    }
+//                                    catch{
+//                                        print("cannot parse caretaker stuff as json")
+//                                    }
+//                                }
+                                var taskName = ""
+                                if let entryName = entry["type"] as? String {
+                                    taskName = entryName
+                                }
+                                
+                                var ctime = ""
+                                var cnum = 0.0
+                                if let etime = entry["completionTime"] as? String {
+                                    ctime = etime
+                                    if Double(ctime) != nil {
+                                        cnum = Double(ctime)!
+                                    }
+                                }
+                                
+                                var stime = ""
+                                var snum = 0.0
+                                if let estime = entry["startDate"] as? String {
+                                    stime = estime
+                                    if Double(stime) != nil {
+                                        snum = Double(stime)!
+                                    }
+                                }
+                                
+                                var etime = ""
+                                var endnum = 0.0
+                                if let eetime = entry["endDate"] as? String {
+                                    etime = eetime
+                                    if Double(etime) != nil {
+                                        endnum = Double(etime)!
+                                    }
+                                }
+                                let newTask = Task(name: taskName, icon: taskIcon, color: taskColor, primaryTime: NSDate(timeIntervalSince1970:cnum), secondaryTime: nil, startDate: NSDate(timeIntervalSince1970: snum), endDate: NSDate(timeIntervalSince1970: endnum))
+                                if newTask != nil{
+                                    
+                                    self.tasks += [newTask!]
+                                    print(self.tasks.count)
+                                    self.taskTable.reloadData()
+                                }
                             }
                         }
                     }
@@ -73,14 +155,16 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
             task.resume()
             
         
+        }else {
+            print("cannot get url")
         }
-        return loadedTasks as! [Task]
+
     }
     
     // load sample tasks
     func loadSampleTasks() {
-        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "toothbrush")!, color: UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 600), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!, Task(name: "Eat Lunch", icon: UIImage(named: "lunch")!, color: UIColor(red: CGFloat(0.58), green: CGFloat(0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 10), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!, Task(name: "Catch the bus", icon: UIImage(named: "schoolbus")!, color: UIColor(red: CGFloat(0.58), green: CGFloat( 0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 60), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!, Task(name: "Do homework", icon: UIImage(named: "homework")!, color: UIColor(red: CGFloat(1.0), green: CGFloat( 0.90), blue: CGFloat(0.60), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 60), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!]
-        tasks[1].setNotifications()
+        tasks = [Task(name: "Brush Teeth", icon: UIImage(named: "brush teeth")!, color: UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 600), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!, Task(name: "Eat Lunch", icon: UIImage(named: "eat lunch")!, color: UIColor(red: CGFloat(0.58), green: CGFloat(0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 10), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!, Task(name: "Catch the Bus", icon: UIImage(named: "catch the bus")!, color: UIColor(red: CGFloat(0.58), green: CGFloat( 0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 60), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!, Task(name: "Homework", icon: UIImage(named: "homework")!, color: UIColor(red: CGFloat(1.0), green: CGFloat( 0.90), blue: CGFloat(0.60), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 60), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))!]
+        tasks[0].setNotifications()
         
     }
     
@@ -98,6 +182,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
         return tasks.count
     }
     
+    // Populate the table with tasks at each row
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("myTask", forIndexPath: indexPath)
         cell.textLabel?.text = tasks[indexPath.row].name
@@ -105,9 +190,12 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
         return cell
     }
     
+    
+    // Allow users to edit and delete rows
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         if editingStyle == .Delete {
             // Delete the row from the data source
+            // TODO: delete the task from the database
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
@@ -133,12 +221,28 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                 taskTable.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
                 
                 // Save the task to the server
-                if let url = NSURL(string: "http://192.168.43.34:3000/addTask"){
+                if let url = NSURL(string: "http://192.168.108.13:3000/addTask"){
                     let session = NSURLSession.sharedSession()
                     let request = NSMutableURLRequest(URL: url)
                     request.HTTPMethod = "POST"
                     // PUT IN THE PARAMS
-                    let paramString = "type=\(task.name)&startDate=\(task.startDate)&endDate=\(task.endDate)&completionTime=\(task.primaryTime)&icon=\(task.icon.accessibilityIdentifier!)&caretakerInfo=\(task.caretaker)&caretakerNotes=\(task.caretakerNotes)"
+                    var paramString = "type=\(task.name)&startDate=\(task.startDate.timeIntervalSince1970)&endDate=\(task.endDate.timeIntervalSince1970)&completionTime=\(task.primaryTime?.timeIntervalSince1970)"
+                    if task.icon.accessibilityIdentifier != nil {
+                        paramString += "&icon=\(task.icon.accessibilityIdentifier)"
+                    }else{
+                        paramString += "&icon="
+                    }
+                    if task.caretaker != nil {
+                        paramString += "&caretakerInfo=\(task.caretaker)"
+                    }else {
+                        paramString += "&caretakerInfo="
+
+                    }
+                    if task.caretakerNotes != nil {
+                        paramString += "&caretakerNotes=\(task.caretakerNotes)"
+                    }else{
+                        paramString += "&caretakerNotes="
+                    }
                     request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
                     let task = session.dataTaskWithRequest(request){
                         (let data, let response, let error) -> Void in

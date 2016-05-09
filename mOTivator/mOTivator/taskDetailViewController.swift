@@ -5,6 +5,8 @@
 //  Created by Chapman, Margaret E. on 4/29/16.
 //  Copyright © 2016 Tufts. All rights reserved.
 //
+//  This class shows specific details about each specific task. It shows a graph of the task and some data points.
+//
 
 import UIKit
 

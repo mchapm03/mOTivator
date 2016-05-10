@@ -74,3 +74,5 @@ be online. Any attempt to access the YUN via ssh would fail either due to host n
 or invalid password. Network analysis showed that the YUN was connected to the network and pinging
 the ip was sucessful, but we were unable to get into the board. We are 100% confident that we were 
 using the correct password.
+
+Server can not handle POST requests for large amount of data. When too much data is sent in a response, the YUN disconects from the Wifi.

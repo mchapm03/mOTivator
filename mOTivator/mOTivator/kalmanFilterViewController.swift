@@ -1390,6 +1390,7 @@ class kalmanFilterViewController: UIViewController {
             return true
         }
         else{
+            print("Brushing teeth not detected")
             return false
         }
     

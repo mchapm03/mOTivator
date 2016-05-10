@@ -29,7 +29,7 @@ class taskDetailViewController: UIViewController, UITableViewDataSource, UITable
     func loadSampleTask() {
         task = Task(name: "Brush Teeth", icon: UIImage(named: "brush teeth")!, color: UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0)), primaryTime: NSDate(timeIntervalSinceNow: 1), secondaryTime: nil, startDate:NSDate(timeIntervalSinceNow: -3600), endDate: NSDate(timeIntervalSinceNow: 3600))
         if task != nil{
-            task!.record = [(NSDate(timeIntervalSinceNow: -3600), true), (NSDate(timeIntervalSinceNow: -6400), false)]
+            task!.record = [(NSDate(timeIntervalSinceNow: -3600), true), (NSDate(timeIntervalSinceNow: -64000), false), (NSDate(timeIntervalSinceNow: -200000), false), (NSDate(timeIntervalSinceNow: -300000), true), (NSDate(timeIntervalSinceNow: -400000), false)]
         }
         
     }
@@ -43,14 +43,17 @@ class taskDetailViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("taskCompletedCell", forIndexPath: indexPath)
-        cell.dateLabel?.text = task?.record[indexPath.row].name
-        if task?.record[indexPath.row] == true {
-            cell.completedLabel?.color = UIColor.greenColor()
-            cell.completedLabel?.text = "Completed"
+        let cell = tableView.dequeueReusableCellWithIdentifier("taskCompletedCell", forIndexPath: indexPath) as! taskCompletedCell
+        let (day, compl) = (task?.record[indexPath.row])!
+        let dateformat = NSDateFormatter()
+        dateformat.dateStyle = NSDateFormatterStyle.MediumStyle
+        cell.dateLabel.text = dateformat.stringFromDate(day)
+        if compl == true {
+            cell.completedLabel.textColor = UIColor(red: CGFloat(0.58), green: CGFloat(0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0))
+            cell.completedLabel.text = "Completed"
         }else{
-            cell.completedLabel?.color = UIColor.redColor()
-            cell.completedLabel?.text = "Not completed"
+            cell.completedLabel.textColor = UIColor(red: 0.96, green: 0.56, blue: 0.56, alpha: 1.0)
+            cell.completedLabel.text = "Not completed"
         }
         return cell
     }

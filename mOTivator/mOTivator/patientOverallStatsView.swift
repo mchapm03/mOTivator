@@ -16,7 +16,6 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
     var patient : Patient?
     var tasks = [Task]()
     // For graph:
-    // TODO: add labels
     @IBOutlet weak var overallGraphView: OverallGraphView!
     @IBOutlet weak var taskTable: UITableView!
     
@@ -66,11 +65,11 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
                                 var taskColor = UIColor.blackColor()
                                 if let thisColor = entry["colorAll"] as? String {
                                     if thisColor == "green" {
-                                        taskColor = UIColor.greenColor()
+                                        taskColor = UIColor(red: CGFloat(0.58), green: CGFloat(0.77), blue: CGFloat(0.49), alpha: CGFloat(1.0))
                                     }else if thisColor == "red"{
-                                        taskColor = UIColor.redColor()
+                                        taskColor = UIColor(red: CGFloat(0.96), green: CGFloat( 0.56), blue: CGFloat(0.56), alpha: CGFloat(1.0))
                                     }else if thisColor == "yellow" {
-                                        taskColor = UIColor.yellowColor()
+                                        taskColor = UIColor(red: CGFloat(1.0), green: CGFloat( 0.90), blue: CGFloat(0.60), alpha: CGFloat(1.0))
                                     }
                                 }
                                 
@@ -87,27 +86,14 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
                                 //                                    taskIcon = UIImage(named: "motivator_iconcopy")!
                                 //                                }
                                 
-                                if UIImage(named: entry["task"]!.lowercaseString as String) != nil{
-                                    taskIcon = UIImage(named: entry["task"]!.lowercaseString as String)!
+                                if UIImage(named: entry["type"]!.lowercaseString as String) != nil{
+                                    taskIcon = UIImage(named: entry["type"]!.lowercaseString as String)!
                                 }else {
                                     taskIcon = UIImage(named: "motivator_iconcopy")!
                                     
                                 }
                                 
                                 
-                                // Get Caretaker stuff
-                                //                                var caretaker : (String, String) = ("", "")
-                                //                                var caretakerNotes: String = ""
-                                //                                if entry["caretaker"] != nil {
-                                //                                    let raw = try NSJSONSerialization.JSONObjectWithData(entry["caretaker"]!, options: .MutableContainers)
-                                //
-                                //                                    if let caretakerjson = raw as? [[String: String]] {                                    caretaker = (caretakerjson["contactInfo"])
-                                //                                        caretakerNotes = caretakerjson["notes"]
-                                //                                    }
-                                //                                    catch{
-                                //                                        print("cannot parse caretaker stuff as json")
-                                //                                    }
-                                //                                }
                                 var taskName = ""
                                 if let entryName = entry["type"] as? String {
                                     taskName = entryName
@@ -141,10 +127,19 @@ class patientOverallStatsView: UIViewController, UITableViewDataSource, UITableV
                                 }
                                 let newTask = Task(name: taskName, icon: taskIcon, color: taskColor, primaryTime: NSDate(timeIntervalSince1970:cnum), secondaryTime: nil, startDate: NSDate(timeIntervalSince1970: snum), endDate: NSDate(timeIntervalSince1970: endnum))
                                 if newTask != nil{
-                                    
-                                    self.tasks += [newTask!]
-                                    print(self.tasks.count)
-                                    self.taskTable.reloadData()
+                                    var inList = false
+                                    if self.tasks.count>0{
+                                        for index in 1...self.tasks.count{
+                                            if self.tasks[index-1].name == newTask!.name{
+                                                inList = true
+                                            }
+                                        }
+                                    }
+                                    if inList == false{
+                                        self.tasks += [newTask!]
+                                        print(self.tasks.count)
+                                        self.taskTable.reloadData()
+                                    }
                                 }
                             }
                         }

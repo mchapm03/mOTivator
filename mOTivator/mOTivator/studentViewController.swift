@@ -24,16 +24,17 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // for tableview subview:
         taskTable.delegate = self
         taskTable.dataSource = self
         
         
+        // Get tasks from server:
+        loadTasks()
         
-//        if let loadedTasks = loadTasks() as? [Task] {
-            //loadTasks()
-//        }else {
-            loadSampleTasks()
-//        }
+        // Get static hardcoded tasks:
+        //loadSampleTasks()
     }
     
     // load tasks from the server for this patient
@@ -73,43 +74,21 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                                 
                                 // Get icon
                                 var taskIcon: UIImage
-//                                if entry["icon"] != nil {
-//                                    if UIImage(named: entry["icon"]! as! String) != nil{
-//                                        taskIcon = UIImage(named: entry["icon"]! as! String)!
-//                                    }else {
-//                                        taskIcon = UIImage(named: "motivator_iconcopy")!
-//
-//                                    }
-//                                }else {
-//                                    taskIcon = UIImage(named: "motivator_iconcopy")!
-//                                }
                                 
-                                if UIImage(named: entry["task"]!.lowercaseString as String) != nil{
-                                    taskIcon = UIImage(named: entry["task"]!.lowercaseString as String)!
+                                if UIImage(named: entry["type"]!.lowercaseString as String) != nil{
+                                    taskIcon = UIImage(named: entry["type"]!.lowercaseString as String)!
                                 }else {
                                     taskIcon = UIImage(named: "motivator_iconcopy")!
 
                                 }
 
-                                
-                                // Get Caretaker stuff
-//                                var caretaker : (String, String) = ("", "")
-//                                var caretakerNotes: String = ""
-//                                if entry["caretaker"] != nil {
-//                                    let raw = try NSJSONSerialization.JSONObjectWithData(entry["caretaker"]!, options: .MutableContainers)
-//                                    
-//                                    if let caretakerjson = raw as? [[String: String]] {                                    caretaker = (caretakerjson["contactInfo"])
-//                                        caretakerNotes = caretakerjson["notes"]
-//                                    }
-//                                    catch{
-//                                        print("cannot parse caretaker stuff as json")
-//                                    }
-//                                }
+                                // get name of task
                                 var taskName = ""
                                 if let entryName = entry["type"] as? String {
                                     taskName = entryName
                                 }
                                 
+                                // get task completion time
                                 var ctime = ""
                                 var cnum = 0.0
                                 if let etime = entry["completionTime"] as? String {
@@ -119,6 +98,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                                     }
                                 }
                                 
+                                // get task start date
                                 var stime = ""
                                 var snum = 0.0
                                 if let estime = entry["startDate"] as? String {
@@ -128,6 +108,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                                     }
                                 }
                                 
+                                // get task end date
                                 var etime = ""
                                 var endnum = 0.0
                                 if let eetime = entry["endDate"] as? String {
@@ -136,15 +117,29 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
                                         endnum = Double(etime)!
                                     }
                                 }
+                                
+                                // create the new task with the info gotten from the server
                                 let newTask = Task(name: taskName, icon: taskIcon, color: taskColor, primaryTime: NSDate(timeIntervalSince1970:cnum), secondaryTime: nil, startDate: NSDate(timeIntervalSince1970: snum), endDate: NSDate(timeIntervalSince1970: endnum))
+                                // if the task creation was successful, add it to the overall tasks
+                                // and display it in the table
                                 if newTask != nil{
-                                    
-                                    self.tasks += [newTask!]
-                                    print(self.tasks.count)
-                                    self.taskTable.reloadData()
+                                    var inList = false
+                                    if self.tasks.count>0{
+                                        for index in 1...self.tasks.count{
+                                            if self.tasks[index-1].name == newTask!.name{
+                                                inList = true
+                                            }
+                                        }
+                                    }
+                                    if inList == false{
+                                        self.tasks += [newTask!]
+                                        print(self.tasks.count)
+                                        self.taskTable.reloadData()
+                                    }
                                 }
                             }
                         }
+
                     }
                         
                     catch{
@@ -183,6 +178,7 @@ class studentViewController: UIViewController, UITableViewDataSource, UITableVie
     }
     
     // Populate the table with tasks at each row
+    // each cell has a name label and an icon image view
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("myTask", forIndexPath: indexPath)
         cell.textLabel?.text = tasks[indexPath.row].name

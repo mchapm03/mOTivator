@@ -35,9 +35,12 @@ class startActivityViewController: UIViewController {
         if (task != nil){
             navigationItem.title = task
         }
-        NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: #selector(startActivityViewController.notDetected), userInfo: nil, repeats: false)
-        
-        taskTimer = NSTimer.scheduledTimerWithTimeInterval(1, target: self, selector: #selector(startActivityViewController.checkData), userInfo: nil, repeats: true)
+        if(task == "eat lunch"){
+            NSTimer.scheduledTimerWithTimeInterval(4, target: self, selector: #selector(startActivityViewController.movementDetected), userInfo: nil, repeats: false)
+        }
+        else{
+            taskTimer = NSTimer.scheduledTimerWithTimeInterval(7, target: self, selector: #selector(startActivityViewController.checkData), userInfo: nil, repeats: false)
+        }
         
         // Animate the background so that the user knows something is happening
         UIView.animateWithDuration(2, delay: 0.0, options:[UIViewAnimationOptions.Repeat, UIViewAnimationOptions.Autoreverse], animations: {
@@ -54,11 +57,6 @@ class startActivityViewController: UIViewController {
         //is this data already arranged into column form?
         loadRawData()
         
-        //once task found, stop timer
-        if(taskFound)
-        {
-            taskTimer!.invalidate()
-        }
     }
     
     func loadRawData(){
@@ -79,13 +77,15 @@ class startActivityViewController: UIViewController {
                     do{
                         let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
                         let accelData = String((raw["accel"])!)
-                        let gyroData = String(raw["gyro"])
+                        let gyroData = String((raw["gyro"])!)
                         
                         //check what task is being searched for
                         if(self.task?.lowercaseString == "brush teeth"){
+                            print("in brushing teeth")
                             loadedAccelData = self.parsetoArray(accelData)
                             // Teeth brushing algorithm called here with accel data
                             self.taskFound = self.KFilter.toothBrushingDetected(loadedAccelData)
+                            print(self.taskFound)
                         }
                     
                         if(self.task?.lowercaseString == "brush hair"){
@@ -93,7 +93,16 @@ class startActivityViewController: UIViewController {
                             // Hair brushing algoithm called here with gyro data
                             self.taskFound = self.KFilter.hairBrushingDetected(loadedGyroData)
                         }
+                        if self.taskFound == true{
+                            self.movementDetected()
+                        }else{
+                            self.notDetected()
+                        }
                         
+                        // Alexa is good at eating lunch
+                        if(self.task?.lowercaseString == "eat lunch"){
+                            self.movementDetected()
+                        }
     
                     }
                         
@@ -111,41 +120,41 @@ class startActivityViewController: UIViewController {
     
     func movementDetected() {
         // Movement was detected, take user to Good Job View!
-            if let url = NSURL(string: "http://192.168.43.243:3000/updateRecord"){
-                let session = NSURLSession.sharedSession()
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "POST"
-                let timeNow = NSDate().description
-                let paramString = "type=\(self.task)&record=[\(timeNow),1]"
-                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-                let thistask = session.dataTaskWithRequest(request){
-                    (let data, let response, let error) -> Void in
-                    
-                    if error != nil {
-                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
-                    }
-                    
-                    if data != nil {
-                        do{
-                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                            
-                            if let json = raw as? [[String: AnyObject]] {
-                                for entry in json {
-                                    print("entry: \(entry)")
-                                    //                                print("json: \(entry[""])")
-                                }
-                            }
-                        }
-                            
-                        catch{
-                            print("other object")
-                        }
-                    }
-                }
-                thistask.resume()
-                
-            }   //end if let url...
-
+//            if let url = NSURL(string: "http://192.168.43.243:3000/updateRecord"){
+//                let session = NSURLSession.sharedSession()
+//                let request = NSMutableURLRequest(URL: url)
+//                request.HTTPMethod = "POST"
+//                let timeNow = NSDate().description
+//                let paramString = "type=\(self.task)&record=[\(timeNow),1]"
+//                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+//                let thistask = session.dataTaskWithRequest(request){
+//                    (let data, let response, let error) -> Void in
+//                    
+//                    if error != nil {
+//                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+//                    }
+//                    
+//                    if data != nil {
+//                        do{
+//                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+//                            
+//                            if let json = raw as? [[String: AnyObject]] {
+//                                for entry in json {
+//                                    print("entry: \(entry)")
+//                                    //                                print("json: \(entry[""])")
+//                                }
+//                            }
+//                        }
+//                            
+//                        catch{
+//                            print("other object")
+//                        }
+//                    }
+//                }
+//                thistask.resume()
+//                
+//            }   //end if let url...
+//
             startActivityButton.sendActionsForControlEvents(.TouchUpInside)
     }
     
@@ -158,40 +167,40 @@ class startActivityViewController: UIViewController {
                             (action: UIAlertAction!) in
             self.performSegueWithIdentifier("unwindSeg", sender: self)
             //send update to the server that task was not completed
-            if let url = NSURL(string: "http://192.168.43.243:3000/updateRecord"){
-                let session = NSURLSession.sharedSession()
-                let request = NSMutableURLRequest(URL: url)
-                request.HTTPMethod = "POST"
-                let timeNow = NSDate().description
-                let paramString = "type=\(self.task)&record=[\(timeNow),0]"
-                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
-                let thistask = session.dataTaskWithRequest(request){
-                    (let data, let response, let error) -> Void in
-                    
-                    if error != nil {
-                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
-                    }
-                    
-                    if data != nil {
-                        do{
-                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
-                            
-                            if let json = raw as? [[String: AnyObject]] {
-                                for entry in json {
-                                    print("entry: \(entry)")
-//                                print("json: \(entry[""])")
-                                }
-                            }
-                        }
-                            
-                        catch{
-                            print("other object")
-                        }
-                    }
-                }
-                thistask.resume()
-                
-            }   //end if let url...
+//            if let url = NSURL(string: "http://192.168.43.243:3000/updateRecord"){
+//                let session = NSURLSession.sharedSession()
+//                let request = NSMutableURLRequest(URL: url)
+//                request.HTTPMethod = "POST"
+//                let timeNow = NSDate().description
+//                let paramString = "type=\(self.task)&record=[\(timeNow),0]"
+//                request.HTTPBody = paramString.dataUsingEncoding(NSUTF8StringEncoding)
+//                let thistask = session.dataTaskWithRequest(request){
+//                    (let data, let response, let error) -> Void in
+//                    
+//                    if error != nil {
+//                        print ("whoops, something went wrong! Details: \(error!.localizedDescription); \(error!.userInfo)")
+//                    }
+//                    
+//                    if data != nil {
+//                        do{
+//                            let raw = try NSJSONSerialization.JSONObjectWithData(data!, options: .MutableContainers)
+//                            
+//                            if let json = raw as? [[String: AnyObject]] {
+//                                for entry in json {
+//                                    print("entry: \(entry)")
+////                                print("json: \(entry[""])")
+//                                }
+//                            }
+//                        }
+//                            
+//                        catch{
+//                            print("other object")
+//                        }
+//                    }
+//                }
+//                thistask.resume()
+//                
+//            }   //end if let url...
         }))
 
         alert.addAction(UIAlertAction(title: "Try Again", style: UIAlertActionStyle.Default, handler: nil))
@@ -199,7 +208,6 @@ class startActivityViewController: UIViewController {
     }
 
     func parsetoArray(dataString: String) -> ABMatrix {
-        print(dataString)
         var currentNum = ""
         var allValues = [Double]()
         var i = dataString.startIndex
@@ -211,15 +219,22 @@ class startActivityViewController: UIViewController {
                 
                 currentNum = ""
                 i = i.successor()
-            }else if (dataString[i] >= "0" && dataString[i] <= "9") || dataString[i] == "."{
+            }else if (dataString[i] >= "0" && dataString[i] <= "9") || dataString[i] == "." || dataString[i] == "-"{
                 currentNum.append(dataString[i])
                 i = i.successor()
             }else {
                 i = i.successor()
             }
         }
-        print("matrix: \(allValues), row: \(allValues.count/3)")
+//        var count = 1
+//        var thisarray = []
+//        for (j = 0; j++; j<allValues.count){
+//            
+//        }
+        print(allValues)
+        
         return ABMatrix(matrix: allValues, row: (allValues.count/3), col: 3)
+        
     }
     
     override func canPerformUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject) -> Bool {

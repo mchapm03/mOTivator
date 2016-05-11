@@ -1,3 +1,5 @@
+By Maretta Morovitz, Maggie Chapman, Jerry Hu, Courtney Won, Aaron Forrest
+
 ****************************************************************************
 *
 *			Introduction

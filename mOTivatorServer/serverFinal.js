@@ -22,42 +22,9 @@ var lastTime = null;
 // Serve static content
 app.use(express.static(__dirname + '/public'));
 
-//Commented out because we are reading directly from file oututed by arduino
-/*setInterval(function(){fs.readFile("/mnt/sd/hello.txt", 'utf8', function (err,data2) {
-  if (err) {
-    return console.log(err);
-  }
-  
-  //get data stays for last modified time
-  fs.stat("/mnt/sd/hello.txt", function(err, data1){
-  var currentTime = data1.mtime;
-  var dataToSend = {currData: data2}
-  //first time reading file
-  if(lastTime == null){
-        lastTime = currentTime;
-        fs.writeFile("/mnt/sd/accel3.txt", data2, 'utf8');
-       /* db.collection('data', function(error, coll) {
-        var id = coll.insert(dataToSend, function(error, saved) {
-          if (error) {
-            
-          }
-          else {
-            console.log(dataToSend);
-          }
-      });
-      });
-  }
-  //if timestamp has changed aka file modified, read file
-  if (lastTime.getTime() != currentTime.getTime()){
-        lastTime = currentTime;
-         fs.writeFile("/mnt/sd/accel3.txt", data2, 'utf8');
-  }
-   })
-})
-}, 1000);*/
-
-//To update a record provide type of task this record is for
+//To update a record for task
 app.post('/updateRecord', function(request, response) {
+  //must provide task type
   var type = request.body.type;
   var newRecord = request.body.record;
   var sum = 0;

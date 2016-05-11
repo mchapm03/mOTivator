@@ -63,7 +63,7 @@ configure to Wifi
 with OT
 ****************************************************************************
 *
-*			Known Bugs
+*			Known Bugs & Issues
 *
 ****************************************************************************
 On 5/9 at 1am the YUN was disconnected from the YUN network and reset for a mobile hotspot
@@ -77,4 +77,8 @@ or invalid password. Network analysis showed that the YUN was connected to the n
 the ip was sucessful, but we were unable to get into the board. We are 100% confident that we were 
 using the correct password.
 
-Server can not handle POST requests for large amount of data. When too much data is sent in a response, the YUN disconects from the Wifi.
+Server can not handle files with large amounts of data. When it tries to read such a file the wifi
+connection drops.
+
+Server does absolutely 0 error checking...have fun with that. 
+
